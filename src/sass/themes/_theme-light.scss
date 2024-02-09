@@ -1,0 +1,333 @@
+// Twitch Core UI
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+// Map palette colors to tokens.
+$theme-light: (
+
+  // Background Color
+  // ---------------------------------------------------------------------------
+  'color-background':         $white,
+  'color-background-alt':     $hinted-grey-15,
+  'color-background-alt-2':   $hinted-grey-14,
+
+  // Live
+  'color-background-live':   $red,
+
+  // Prime
+  'color-background-prime':  $prime-blue,
+
+  // Buttons
+  'color-background-button':                  $twitch-purple-7,
+  'color-background-button-hover':            $twitch-purple-8,
+  'color-background-button-focus':            $twitch-purple-8,
+  'color-background-button-active':           $twitch-purple-7,
+  'color-background-button-disabled':         $hinted-grey-12,
+
+  'color-background-button-purchase':         $opac-b-5,
+
+  'color-background-button-hollow':           transparent,
+  'color-background-button-hollow-hover':     $opac-p-1,
+  'color-background-button-hollow-focus':     $opac-p-1,
+  'color-background-button-hollow-active':    transparent,
+
+  'color-background-button-status':           $green,
+  'color-background-button-status-hover':     darken($red, 15%),
+  'color-background-button-status-focus':     darken($red, 15%),
+  'color-background-button-status-active':    $red,
+
+  'color-background-button-success':          $green,
+  'color-background-button-success-hover':    darken($green, 5%),
+  'color-background-button-success-focus':    darken($green, 5%),
+  'color-background-button-success-active':   $green,
+
+  'color-background-button-alert':            $red,
+  'color-background-button-alert-hover':      darken($red, 10%),
+  'color-background-button-alert-focus':      darken($red, 10%),
+  'color-background-button-alert-active':     $red,
+
+  // Interactable
+
+  'color-background-interactable':            transparent,
+  'color-background-interactable-hover':      $twitch-purple-8,
+  'color-background-interactable-active':     $twitch-purple-7,
+  'color-background-interactable-selected':   $hinted-grey-12,
+
+  // Inputs
+  'color-background-input':           $white,
+  'color-background-input-checked':   $twitch-purple-8,
+
+  // Toggles
+  'color-background-toggle':          $hinted-grey-10,
+  'color-background-toggle-handle':   $white,
+  'color-background-toggle-hover':    $hinted-grey-9,
+  'color-background-toggle-focus':    $hinted-grey-9,
+  'color-background-toggle-checked':  $green,
+
+  // Balloon
+  'color-background-balloon-hotspot':        $twitch-purple-7,
+  'color-background-balloon-hotspot-hover':  $twitch-purple-8,
+  'color-background-balloon-link-hover':     $twitch-purple-7,
+  'color-background-balloon-link-selected':  $hinted-grey-14,
+  'color-background-balloon-tooltip':        $twitch-purple-1,
+  'color-background-balloon-purple':         $twitch-purple-5,
+  'color-background-balloon-alert':          $red,
+
+  // Overlay
+  'color-background-overlay': $opac-b-9,
+
+  // Progress
+  'color-background-progress':                   $hinted-grey-12,
+  'color-background-progress-vod':               $hinted-grey-1,
+  'color-background-progress-vod-fill':          $twitch-purple-10,
+  'color-background-progress-status':            $green,
+  'color-background-progress-status-error':      $red,
+  'color-background-progress-status-caution':    $orange,
+  'color-background-progress-countdown':         none,
+  'color-background-progress-countdown-status':  $twitch-purple-8,
+
+  // Pills
+  'color-background-pill':         $hinted-grey-9,
+
+  // Social Column
+  'color-background-social-column':  $hinted-grey-15,
+
+  // Top Nav
+  'color-background-top-nav':  $twitch-purple-6,
+
+  // Modal
+  'color-background-modal-overlay': rgba($twitch-purple-2, $opac-9),
+  'color-background-modal':         $white,
+
+  // Text Color
+  // ---------------------------------------------------------------------------
+  'color-text':               $hinted-grey-2,
+  'color-text-alt':           $hinted-grey-4,
+  'color-text-alt-2':         $hinted-grey-7,
+
+  // Link
+  'color-text-link':          $twitch-purple-7,
+  'color-text-link-hover':    $twitch-purple-7,
+  'color-text-link-active':   $twitch-purple-7,
+  'color-text-link-visited':  $twitch-purple-7,
+
+  // Live Count
+  'color-text-live':   $red,
+
+  // Prime
+  'color-text-prime':  $prime-blue,
+
+  // Tabs
+  'color-text-tab':         $twitch-purple-7,
+  'color-text-tab-active':  $hinted-grey-1,
+
+  // Buttons
+  'color-text-button':                   $white,
+  'color-text-button-hover':             $white,
+  'color-text-button-focus':             $white,
+  'color-text-button-active':            $white,
+  'color-text-button-disabled':          $white,
+
+  'color-text-button-secondary':         $hinted-grey-10,
+  'color-text-button-secondary-hover':   $hinted-grey-7,
+  'color-text-button-secondary-focus':   $hinted-grey-7,
+  'color-text-button-secondary-active':  $hinted-grey-7,
+
+  'color-text-button-hollow':            $twitch-purple-7,
+  'color-text-button-hollow-hover':      $twitch-purple-4,
+  'color-text-button-hollow-focus':      $twitch-purple-4,
+  'color-text-button-hollow-active':     $twitch-purple-4,
+
+  'color-text-button-status':            $white,
+  'color-text-button-status-hover':      $white,
+  'color-text-button-status-focus':      $white,
+  'color-text-button-status-active':     $white,
+
+  'color-text-button-success':           $white,
+  'color-text-button-success-hover':     $white,
+  'color-text-button-success-focus':     $white,
+  'color-text-button-success-active':    $white,
+
+  'color-text-button-alert':             $white,
+  'color-text-button-alert-hover':       $white,
+  'color-text-button-alert-focus':       $white,
+  'color-text-button-alert-active':      $white,
+
+  // Interactable
+
+  'color-text-interactable':            'currentColor',
+  'color-text-interactable-hover':      $white,
+  'color-text-interactable-active':     $white,
+  'color-text-interactable-selected':   'currentColor',
+
+  // Inputs
+  'color-text-input':               $hinted-grey-5,
+  'color-text-input-placeholder':   $hinted-grey-9,
+  'color-text-input-checked-icon':  $white,
+
+  'color-text-label':              $hinted-grey-2,
+  'color-text-label-optional':     $hinted-grey-7,
+  'color-text-hint':               $hinted-grey-7,
+
+  // Toggles
+  'color-text-toggle-checked-icon':  $white,
+
+  // Interaction
+  'color-text-error':  $red,
+
+  // Balloon
+  'color-text-balloon-title':          $hinted-grey-7,
+  'color-text-balloon-link':           $twitch-purple-7,
+  'color-text-balloon-link-hover':     $white,
+  'color-text-balloon-link-disabled':  $hinted-grey-9,
+  'color-text-balloon-link-alert':     $red,
+  'color-text-balloon-fancy':          $twitch-purple-6,
+  'color-text-balloon-tooltip':        $white,
+  'color-text-balloon-purple':         $white,
+  'color-text-balloon-alert':          $white,
+
+  // Overlay
+  'color-text-overlay':      $hinted-grey-15,
+  'color-text-overlay-alt':  $twitch-purple-10,
+
+  // Pills
+  'color-text-pill':         $white,
+
+
+  // Border Color
+  // ---------------------------------------------------------------------------
+  'color-border':  $hinted-grey-12,
+
+  // Tabs
+  'color-border-tab':         $hinted-grey-12,
+  'color-border-tab-hover':   $twitch-purple-7,
+  'color-border-tab-focus':   $twitch-purple-7,
+  'color-border-tab-active':  $twitch-purple-7,
+
+  // Buttons
+  'color-border-button':                $twitch-purple-7,
+  'color-border-button-hover':          $twitch-purple-8,
+  'color-border-button-focus':          $twitch-purple-9,
+  'color-border-button-active':         $twitch-purple-8,
+  'color-border-button-disabled':       $hinted-grey-12,
+
+  'color-border-button-hollow':         $twitch-purple-10,
+  'color-border-button-hollow-hover':   $opac-p-8,
+  'color-border-button-hollow-focus':   $opac-p-8,
+  'color-border-button-hollow-active':  $opac-p-9,
+
+  'color-border-button-status':         $green,
+  'color-border-button-status-hover':   $red,
+  'color-border-button-status-focus':   $red,
+  'color-border-button-status-active':  $red,
+
+  'color-border-button-success':        $green,
+  'color-border-button-success-hover':  $green,
+  'color-border-button-success-focus':  $green,
+  'color-border-button-success-active': $green,
+
+  'color-border-button-alert':          $red,
+  'color-border-button-alert-hover':    darken($red, 10%),
+  'color-border-button-alert-focus':    darken($red, 10%),
+  'color-border-button-alert-active':   darken($red, 10%),
+
+  // Inputs
+  'color-border-input':           $hinted-grey-12,
+  'color-border-input-focus':     $twitch-purple-8,
+  'color-border-input-checked':   $twitch-purple-8,
+  'color-border-input-error':     $red,
+
+  // Toggle
+  'color-border-toggle':        transparent,
+  'color-border-toggle-hover':  $twitch-purple-10,
+  'color-border-toggle-focus':  $twitch-purple-10,
+
+
+  // Icon Color
+  // ---------------------------------------------------------------------------
+  'color-icon-input-checked':  $white,
+
+
+  // SVG Fill Color
+  // ---------------------------------------------------------------------------
+  'color-fill':               $hinted-grey-2,
+  'color-fill-current':       $current-color,
+  'color-fill-alt':           $hinted-grey-4,
+  'color-fill-alt-2':         $hinted-grey-7,
+  'color-fill-brand':         $twitch-purple-7,
+  'color-fill-live':          $red,
+  'color-fill-warn':          $yellow,
+  'color-fill-alert':         $red,
+  'color-fill-success':       $green,
+  'color-fill-prime':         $prime-blue,
+
+
+  // Social Media Brand Colors
+  // ---------------------------------------------------------------------------
+  'color-social-twitter':   $color-twitter,
+  'color-social-facebook':  $color-facebook,
+  'color-social-reddit':    $color-reddit,
+  'color-social-snapchat':  $color-snapchat,
+  'color-social-instagram': $color-instagram,
+  'color-social-youtube':   $color-youtube,
+  'color-social-paypal':    $color-paypal,
+  'color-social-vk':        $color-vk,
+
+
+  // Box Shadow
+  // ---------------------------------------------------------------------------
+
+  // Buttons
+  'shadow-button-focus':     0 0 6px 0 $twitch-purple-8,
+  'shadow-button-active':    0 0 6px 0 $twitch-purple-8,
+  'shadow-button-disabled':  none,
+
+  // Inputs
+  'shadow-input':         inset 0 0 0 1px $hinted-grey-12,
+  'shadow-input-focus':   0 0 6px -2px $twitch-purple-8,
+
+  // Tabs
+  'shadow-tab-focus':  0 4px 6px -4px $twitch-purple-8,
+
+  // Balloon
+  'shadow-balloon': 0 1px 1px $opac-b-5,
+
+  // Interactable
+  'shadow-interactable-focus': (0 0 6px 0 $twitch-purple-8, inset 0 0 0 1px $twitch-purple-8),
+
+
+  // Border
+  // ---------------------------------------------------------------------------
+  'border-width': 1px,
+  'border-radius': 1px
+
+);
+
+
+// ----------------------------------------------------------------------------
+// Deprecation
+// sass-lint:disable-all
+// ----------------------------------------------------------------------------
+
+// These variables are being used in other `/base` components.
+// BASE BODY COLORS
+$color-body-bg               : $white;
+$color-body-text             : $hinted-grey-5;
+$color-body-subtext          : $hinted-grey-7;
+$color-body-hint             : $hinted-grey-9;
+$color-body-link             : $twitch-purple;
+$color-body-link-hover       : $twitch-purple-6;
+$color-body-stroke           : $hinted-grey-13;
+$color-body-alert            : $red;
+$color-body-caution          : $orange;
+$color-body-marker           : $twitch-purple;
+$color-body-logo             : $twitch-purple;
+$color-body-logo-dark        : $white;
+
+// TODO: Set this in our stroke file
+// Seperator colors
+$color-sep-bg                : $hinted-grey-13;
+$color-sep-bg-dark           : $twitch-purple-4;
+
+// ----------------------------------------------------------------------------
+// sass-lint:enable-all

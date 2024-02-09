@@ -1,0 +1,30 @@
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+// Pill Settings
+// ----------------------------------------------------------------------------
+$pill-padding: 0.24rem 0.4rem
+$pill-border-radius: 2px
+$pill-font-size: 75%
+$pill-line-height: 1
+
+// Pill
+// ----------------------------------------------------------------------------
+.pill
+  +theme((background: 'color-background-pill', color: 'color-text-pill'))
+  display: inline-block
+  position: relative
+  // Compensate for difference caused by padding.
+  // sass-lint:disable property-units
+  bottom: 0.12em
+  // sass-lint:enable property-units
+  padding: $pill-padding
+  border-radius: $pill-border-radius
+  font-size: $pill-font-size
+  line-height: $pill-line-height
+  text-align: center
+  white-space: nowrap
+  vertical-align: baseline
+
+  &:empty
+    display: none

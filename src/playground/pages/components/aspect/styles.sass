@@ -1,0 +1,24 @@
+@import core.variables
+
+.aspect-example
+  width: 20%
+  height: 100%
+
+  // sass-lint:disable no-combinators
+  & > div
+    display: flex
+    align-items: center
+    background: $twitch-purple-6
+  // sass-lint:enabe no-combinators
+
+  &__inner
+    display: flex
+    align-items: center
+    justify-content: center
+    text-align: center
+
+  &__label
+    padding: $space-05 $space-1
+    border-radius: 4px
+    background: $opac-b-12
+    color: $white

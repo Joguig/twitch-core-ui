@@ -1,0 +1,22 @@
+@import core.variables
+// Card Body Holds Title and Info
+//  ------------------------------
+.tw-card-body
+  position: relative
+  // see https://css-tricks.com/flexbox-truncated-text/
+  flex-shrink: 1
+  min-width: 0
+
+.tw-card-body--overlay
+  +theme((color: color-text-overlay))
+  display: flex
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  flex-direction: column
+  justify-content: flex-end
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAABkCAMAAACbxRFRAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAnFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4jUzeAAAAM3RSTlMAAwgNERcWHSMpKjAxOD9GR05PVldfXmZnb3d/iIePkJiXn6eutby9w8nP1dna3uLj5uXSLV7qAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAGlJREFUGNPNxzcWgkAAANFhiSpBUUSWKEGSoHD/w1lb0jHvNwO7SVEQAlVF09ANTBPL4nDkZOM4uC7emYvP9UZwJ3wQRUhJHJOkZDnFk7KkqqhrmoZXS9fR9wwD48h7Yp75fFmWDda//QFGfg4moECXqwAAAABJRU5ErkJggg==') repeat-x bottom
+  background-size: auto 100%
+  overflow: hidden

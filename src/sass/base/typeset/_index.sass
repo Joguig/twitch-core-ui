@@ -1,0 +1,75 @@
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+//-----------------------------------------------------------------------------
+// Typeset
+//-----------------------------------------------------------------------------
+
+h1
+  font-size: $font-size-1
+  line-height: 4rem
+
+h2
+  font-size: $font-size-2
+  line-height: 3rem
+
+h3
+  font-size: $font-size-3
+  line-height: 3rem
+
+h4
+  font-size: $font-size-4
+  line-height: 2rem
+
+h5
+  font-size: $font-size-5
+  line-height: 2rem
+
+h6,
+p
+  font-size: $font-size-6
+  line-height: 2rem
+
+.typeset
+  h1
+    +baseline($font-size-1, $lineheight: 3, $below: 2)
+
+  h2
+    +baseline($font-size-2, $lineheight: 3, $below: 2)
+
+  h3
+    +baseline($font-size-3, $lineheight: 3, $below: 1)
+
+  h4
+    +baseline($font-size-4, $below: 1)
+
+  h5
+    +baseline($font-size-5, $below: 1)
+
+  h6
+    +baseline($font-size-6, $below: 1)
+
+  p,
+  li,
+  dd
+    +baseline($font-size-5, $below: 1)
+
+  dt
+    +baseline($font-size-5, $below: 0)
+    font-weight: bold
+
+  ul
+    li
+      list-style-type: disc
+
+  ol
+    li
+      list-style-type: decimal
+
+  ol,
+  ul
+    margin-bottom: 1.5rem
+    padding-left: $space-2
+
+  li
+    list-style-position: outside

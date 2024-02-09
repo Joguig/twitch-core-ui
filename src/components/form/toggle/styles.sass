@@ -1,0 +1,94 @@
+@import 'core.variables'
+
+.tw-toggle
+  display: flex
+  flex-direction: column
+  position: relative
+  line-height: 2rem
+
+  input
+    &[type='checkbox']
+      position: absolute
+      opacity: 0
+
+      &:focus + .tw-toggle__button
+        +theme
+          background: token('color-background-toggle-focus')
+          box-shadow: token('shadow-input-focus'), inset 0 0 0 token('border-width') token('color-border-toggle-focus')
+
+      &:disabled
+        & + .tw-toggle__button
+          opacity: 0.5
+
+      &:checked
+        + .tw-toggle__button
+          +theme((background: 'color-background-toggle-checked'))
+
+          &::before
+            +theme
+              border-bottom: 2px solid token('color-text-toggle-checked-icon')
+              border-left: 2px solid token('color-text-toggle-checked-icon')
+            display: block
+            content: ''
+            height: 0.3rem
+            width: 0.7rem
+            position: absolute
+            top: 0.9rem
+            left: 1.4rem
+            transform: translate3d(-50%, -50%, 0) rotate(-45deg)
+
+          &::after
+            content: ''
+            display: block
+            width: 2rem
+            position: absolute
+            top: 0.1rem
+            left: calc(100% - 2rem - 1px)
+
+        & ~ .tw-toggle__label-on
+          display: inline-block
+          opacity: 1
+
+        & ~ .tw-toggle__label-off
+          opacity: 0
+          display: none
+
+.tw-toggle__button
+  +theme((background: 'color-background-toggle'))
+  content: ''
+  display: inline-block
+  width: 5rem
+  height: 2rem
+  position: relative
+  vertical-align: bottom
+  cursor: pointer
+  order: 0
+  transition: background-color $timer-fast ease-in
+
+  &:hover
+    +theme((background: 'color-background-toggle-hover'))
+
+  &::after
+    +theme((background: 'color-background-toggle-handle'))
+    content: ''
+    display: block
+    width: 2rem
+    position: absolute
+    top: 0.1rem
+    left: 0.1rem
+    bottom: 0.1rem
+    transition: left $timer-fast ease-in
+
+.tw-toggle__label-on,
+.tw-toggle__label-off
+  +theme((color: 'color-text-hint'))
+  font-size: $font-size-7
+  font-weight: normal
+  order: 0
+
+.tw-toggle__label-on
+  opacity: 0
+  display: none
+
+.tw-toggle__label-off
+  opacity: 1

@@ -1,0 +1,17 @@
+@import core.variables
+
+.tw-box-art-card
+  a:hover
+    text-decoration: none
+    .tw-box-art-card__title
+      +theme((color: color-text-link))
+
+
+.tw-box-art-card__title
+  +theme((color: color-text))
+  margin-top: $space-05
+  font-size: $font-size-5
+  line-height: $line-height
+
+.tw-box-art-card__meta
+  +theme((color: color-text-alt-2))

@@ -1,0 +1,528 @@
+@import core.variables
+
+.token-table-row
+  display: table-row
+
+  &__cell
+    +theme
+      border-top: token('border-width') solid token('color-border')
+    display: table-cell
+    padding: $space-1 $space-2
+    font-size: $font-size-4
+    vertical-align: middle
+
+    &:not(:first-child)
+      width: 32%
+
+
+.token
+  display: flex
+  align-items: center
+
+  &__swatch
+    border: 1px solid $hinted-grey-12
+    display: inline-block
+    width: 4rem
+    height: 2.4rem
+    margin-right: $space-1
+    padding: 0.2rem
+    border-radius: 4px
+    text-align: center
+
+    &--color-background
+      +theme((background: 'color-background'))
+
+    &--color-background-alt
+      +theme((background: 'color-background-alt'))
+
+    &--color-background-alt-2
+      +theme((background: 'color-background-alt-2'))
+
+    &--color-background-live
+      +theme((background: 'color-background-live'))
+
+    &--color-background-prime
+      +theme((background: 'color-background-prime'))
+
+    &--color-background-button
+      +theme((background: 'color-background-button'))
+
+    &--color-background-button-hover
+      +theme((background: 'color-background-button-hover'))
+
+    &--color-background-button-focus
+      +theme((background: 'color-background-button-focus'))
+
+    &--color-background-button-active
+      +theme((background: 'color-background-button-active'))
+
+    &--color-background-button-disabled
+      +theme((background: 'color-background-button-disabled'))
+
+    &--color-background-button-hollow
+      +theme((background: 'color-background-button-hollow'))
+
+    &--color-background-button-hollow-hover
+      +theme((background: 'color-background-button-hollow-hover'))
+
+    &--color-background-button-hollow-focus
+      +theme((background: 'color-background-button-hollow-focus'))
+
+    &--color-background-button-hollow-active
+      +theme((background: 'color-background-button-hollow-active'))
+
+    &--color-background-button-status
+      +theme((background: 'color-background-button-status'))
+
+    &--color-background-button-status-hover
+      +theme((background: 'color-background-button-status-hover'))
+
+    &--color-background-button-status-focus
+      +theme((background: 'color-background-button-status-focus'))
+
+    &--color-background-button-status-active
+      +theme((background: 'color-background-button-status-active'))
+
+    &--color-background-button-success
+      +theme((background: 'color-background-button-success'))
+
+    &--color-background-button-success-hover
+      +theme((background: 'color-background-button-success-hover'))
+
+    &--color-background-button-success-focus
+      +theme((background: 'color-background-button-success-focus'))
+
+    &--color-background-button-success-active
+      +theme((background: 'color-background-button-success-active'))
+
+    &--color-background-button-alert
+      +theme((background: 'color-background-button-alert'))
+
+    &--color-background-button-alert-hover
+      +theme((background: 'color-background-button-alert-hover'))
+
+    &--color-background-button-alert-focus
+      +theme((background: 'color-background-button-alert-focus'))
+
+    &--color-background-button-alert-active
+      +theme((background: 'color-background-button-alert-active'))
+
+    &--color-background-interactable
+      +theme((background: 'color-background-interactable'))
+
+    &--color-background-interactable-hover
+      +theme((background: 'color-background-interactable-hover'))
+
+    &--color-background-interactable-active
+      +theme((background: 'color-background-interactable-active'))
+
+    &--color-background-interactable-selected
+      +theme((background: 'color-background-interactable-selected'))
+
+    &--color-background-input
+      +theme((background: 'color-background-input'))
+
+    &--color-background-input-checked
+      +theme((background: 'color-background-input-checked'))
+
+    &--color-background-toggle
+      +theme((background: 'color-background-toggle'))
+
+    &--color-background-toggle-handle
+      +theme((background: 'color-background-toggle-handle'))
+
+    &--color-background-toggle-hover
+      +theme((background: 'color-background-toggle-hover'))
+
+    &--color-background-toggle-focus
+      +theme((background: 'color-background-toggle-focus'))
+
+    &--color-background-toggle-checked
+      +theme((background: 'color-background-toggle-checked'))
+
+    &--color-background-balloon-hotspot
+      +theme((background: 'color-background-balloon-hotspot'))
+
+    &--color-background-balloon-hotspot-hover
+      +theme((background: 'color-background-balloon-hotspot-hover'))
+
+    &--color-background-balloon-link-hover
+      +theme((background: 'color-background-balloon-link-hover'))
+
+    &--color-background-balloon-link-selected
+      +theme((background: 'color-background-balloon-link-selected'))
+
+    &--color-background-balloon-tooltip
+      +theme((background: 'color-background-balloon-tooltip'))
+
+    &--color-background-balloon-link-purple
+      +theme((background: 'color-background-balloon-purple'))
+
+    &--color-background-balloon-link-alert
+      +theme((background: 'color-background-balloon-alert'))
+
+    &--color-background-overlay
+      +theme((background: 'color-background-overlay'))
+
+    &--color-background-progress
+      +theme((background: 'color-background-progress'))
+
+    &--color-background-progress-status
+      +theme((background: 'color-background-progress-status'))
+
+    &--color-background-progress-status-error
+      +theme((background: 'color-background-progress-status-error'))
+
+    &--color-background-progress-status-caution
+      +theme((background: 'color-background-progress-status-caution'))
+
+    &--color-background-progress-countdown
+      +theme((background: 'color-background-progress-countdown'))
+
+    &--color-background-progress-countdown-status
+      +theme((background: 'color-background-progress-countdown-status'))
+
+    &--color-background-pill
+      +theme((background: 'color-background-pill'))
+
+    &--color-background-modal-overlay
+      +theme((background: 'color-background-modal-overlay'))
+
+    &--color-background-modal
+      +theme((background: 'color-background-modal'))
+
+    &--color-background-social-column
+      +theme((background: 'color-background-social-column'))
+
+    &--color-background-top-nav
+      +theme((background: 'color-background-top-nav'))
+
+    &--color-text
+      +theme((background: 'color-text'))
+
+    &--color-text-alt
+      +theme((background: 'color-text-alt'))
+
+    &--color-text-alt-2
+      +theme((background: 'color-text-alt-2'))
+
+    &--color-text-live
+      +theme((background: 'color-text-live'))
+
+    &--color-text-prime
+      +theme((background: 'color-text-prime'))
+
+    &--color-text-link
+      +theme((background: 'color-text-link'))
+
+    &--color-text-link-hover
+      +theme((background: 'color-text-link-hover'))
+
+    &--color-text-link-active
+      +theme((background: 'color-text-link-active'))
+
+    &--color-text-link-visited
+      +theme((background: 'color-text-link-visited'))
+
+    &--color-text-button
+      +theme((background: 'color-text-button'))
+
+    &--color-text-button-hover
+      +theme((background: 'color-text-button-hover'))
+
+    &--color-text-button-focus
+      +theme((background: 'color-text-button-focus'))
+
+    &--color-text-button-active
+      +theme((background: 'color-text-button-active'))
+
+    &--color-text-button-disabled
+      +theme((background: 'color-text-button-disabled'))
+
+    &--color-text-button-secondary
+      +theme((background: 'color-text-button-secondary'))
+
+    &--color-text-button-secondary-hover
+      +theme((background: 'color-text-button-secondary-hover'))
+
+    &--color-text-button-secondary-focus
+      +theme((background: 'color-text-button-secondary-focus'))
+
+    &--color-text-button-secondary-active
+      +theme((background: 'color-text-button-secondary-active'))
+
+    &--color-text-button-hollow
+      +theme((background: 'color-text-button-hollow'))
+
+    &--color-text-button-hollow-hover
+      +theme((background: 'color-text-button-hollow-hover'))
+
+    &--color-text-button-hollow-focus
+      +theme((background: 'color-text-button-hollow-focus'))
+
+    &--color-text-button-hollow-active
+      +theme((background: 'color-text-button-hollow-active'))
+
+    &--color-text-button-status
+      +theme((background: 'color-text-button-status'))
+
+    &--color-text-button-status-hover
+      +theme((background: 'color-text-button-status-hover'))
+
+    &--color-text-button-status-focus
+      +theme((background: 'color-text-button-status-focus'))
+
+    &--color-text-button-status-active
+      +theme((background: 'color-text-button-status-active'))
+
+    &--color-text-button-hollow-active
+      +theme((background: 'color-text-button-hollow-active'))
+
+    &--color-text-button-success
+      +theme((background: 'color-text-button-success'))
+
+    &--color-text-button-success-hover
+      +theme((background: 'color-text-button-success-hover'))
+
+    &--color-text-button-success-focus
+      +theme((background: 'color-text-button-success-focus'))
+
+    &--color-text-button-success-active
+      +theme((background: 'color-text-button-success-active'))
+
+    &--color-text-button-alert
+      +theme((background: 'color-text-button-alert'))
+
+    &--color-text-button-alert-hover
+      +theme((background: 'color-text-button-alert-hover'))
+
+    &--color-text-button-alert-focus
+      +theme((background: 'color-text-button-alert-focus'))
+
+    &--color-text-button-alert-active
+      +theme((background: 'color-text-button-alert-active'))
+
+    &--color-text-interactable
+      +theme((background: 'color-text-interactable'))
+
+    &--color-text-interactable-hover
+      +theme((background: 'color-text-interactable-hover'))
+
+    &--color-text-interactable-active
+      +theme((background: 'color-text-interactable-active'))
+
+    &--color-text-interactable-selected
+      +theme((background: 'color-text-interactable-selected'))
+
+    &--color-text-input
+      +theme((background: 'color-text-input'))
+
+    &--color-text-input-placeholder
+      +theme((background: 'color-text-input-placeholder'))
+
+    &--color-text-input-checked-icon
+      +theme((background: 'color-text-input-checked-icon'))
+
+    &--color-text-label
+      +theme((background: 'color-text-label'))
+
+    &--color-text-label-optional
+      +theme((background: 'color-text-label-optional'))
+
+    &--color-text-hint
+      +theme((background: 'color-text-hint'))
+
+    &--color-text-toggle-checked-icon
+      +theme((background: 'color-text-toggle-checked-icon'))
+
+    &--color-text-error
+      +theme((background: 'color-text-error'))
+
+    &--color-text-balloon-title
+      +theme((background: 'color-text-balloon-title'))
+
+    &--color-text-balloon-link
+      +theme((background: 'color-text-balloon-link'))
+
+    &--color-text-balloon-link-hover
+      +theme((background: 'color-text-balloon-link-hover'))
+
+    &--color-text-balloon-link-disabled
+      +theme((background: 'color-text-balloon-link-disabled'))
+
+    &--color-text-balloon-link-alert
+      +theme((background: 'color-text-balloon-link-alert'))
+
+    &--color-text-balloon-tooltip
+      +theme((background: 'color-text-balloon-tooltip'))
+
+    &--color-text-balloon-purple
+      +theme((background: 'color-text-balloon-purple'))
+
+    &--color-text-balloon-alert
+      +theme((background: 'color-text-balloon-alert'))
+
+    &--color-text-overlay
+      +theme((background: 'color-text-overlay'))
+
+    &--color-text-overlay-alt
+      +theme((background: 'color-text-overlay-alt'))
+
+    &--color-text-pill
+      +theme((background: 'color-text-pill'))
+
+    &--color-border
+      +theme((background: 'color-border'))
+
+    &--color-border-tab
+      +theme((background: 'color-border-tab'))
+
+    &--color-border-tab-hover
+      +theme((background: 'color-border-tab-hover'))
+
+    &--color-border-tab-focus
+      +theme((background: 'color-border-tab-focus'))
+
+    &--color-border-tab-active
+      +theme((background: 'color-border-tab-active'))
+
+    &--color-border-button
+      +theme((background: 'color-border-button'))
+
+    &--color-border-button-hover
+      +theme((background: 'color-border-button-hover'))
+
+    &--color-border-button-focus
+      +theme((background: 'color-border-button-focus'))
+
+    &--color-border-button-active
+      +theme((background: 'color-border-button-active'))
+
+    &--color-border-button-disabled
+      +theme((background: 'color-border-button-disabled'))
+
+    &--color-border-button-hollow
+      +theme((background: 'color-border-button-hollow'))
+
+    &--color-border-button-hollow-hover
+      +theme((background: 'color-border-button-hollow-hover'))
+
+    &--color-border-button-hollow-focus
+      +theme((background: 'color-border-button-hollow-focus'))
+
+    &--color-border-button-hollow-active
+      +theme((background: 'color-border-button-hollow-active'))
+
+    &--color-border-button-status
+      +theme((background: 'color-border-button-status'))
+
+    &--color-border-button-status-hover
+      +theme((background: 'color-border-button-status-hover'))
+
+    &--color-border-button-status-focus
+      +theme((background: 'color-border-button-status-focus'))
+
+    &--color-border-button-status-active
+      +theme((background: 'color-border-button-status-active'))
+
+    &--color-border-button-hollow-active
+      +theme((background: 'color-border-button-hollow-active'))
+
+    &--color-border-button-success
+      +theme((background: 'color-border-button-success'))
+
+    &--color-border-button-success-hover
+      +theme((background: 'color-border-button-success-hover'))
+
+    &--color-border-button-success-focus
+      +theme((background: 'color-border-button-success-focus'))
+
+    &--color-border-button-success-active
+      +theme((background: 'color-border-button-success-active'))
+
+    &--color-border-button-alert
+      +theme((background: 'color-border-button-alert'))
+
+    &--color-border-button-alert-hover
+      +theme((background: 'color-border-button-alert-hover'))
+
+    &--color-border-button-alert-focus
+      +theme((background: 'color-border-button-alert-focus'))
+
+    &--color-border-button-alert-active
+      +theme((background: 'color-border-button-alert-active'))
+
+    &--color-border-input
+      +theme((background: 'color-border-input'))
+
+    &--color-border-input-focus
+      +theme((background: 'color-border-input-focus'))
+
+    &--color-border-input-checked
+      +theme((background: 'color-border-input-checked'))
+
+    &--color-border-input-error
+      +theme((background: 'color-border-input-error'))
+
+    &--color-border-toggle
+      +theme((background: 'color-border-toggle'))
+
+    &--color-border-toggle-hover
+      +theme((background: 'color-border-toggle-hover'))
+
+    &--color-border-toggle-focus
+      +theme((background: 'color-border-toggle-focus'))
+
+    &--color-fill
+      +theme((background: 'color-fill'))
+
+    &--color-fill-current
+      +theme((background: 'color-fill-current'))
+
+    &--color-fill-alt
+      +theme((background: 'color-fill-alt'))
+
+    &--color-fill-alt-2
+      +theme((background: 'color-fill-alt-2'))
+
+    &--color-fill-brand
+      +theme((background: 'color-fill-brand'))
+
+    &--color-fill-live
+      +theme((background: 'color-fill-live'))
+
+    &--color-fill-warn
+      +theme((background: 'color-fill-warn'))
+
+    &--color-fill-alert
+      +theme((background: 'color-fill-alert'))
+
+    &--color-fill-success
+      +theme((background: 'color-fill-success'))
+
+    &--color-fill-prime
+      +theme((background: 'color-fill-prime'))
+
+    &--color-social-twitter
+      +theme((background: 'color-social-twitter'))
+
+    &--color-social-facebook
+      +theme((background: 'color-social-facebook'))
+
+    &--color-social-reddit
+      +theme((background: 'color-social-reddit'))
+
+    &--color-social-snapchat
+      +theme((background: 'color-social-snapchat'))
+
+    &--color-social-instagram
+      +theme((background: 'color-social-instagram'))
+
+    &--color-social-youtube
+      +theme((background: 'color-social-youtube'))
+
+    &--color-social-paypal
+      +theme((background: 'color-social-paypal'))
+
+    &--color-social-vk
+      +theme((background: 'color-social-vk'))

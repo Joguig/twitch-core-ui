@@ -1,0 +1,45 @@
+@import 'core.variables'
+
+.tw-form__input-group
+  position: relative
+  flex-grow: 1
+
+.tw-form__label
+  +theme((color: 'color-text-label'))
+  +baseline($font-size-6, $lineheight: 1)
+  display: inline-block
+  position: relative
+  font-weight: $font-weight-bold
+
+.tw-form__label--optional
+  &::after
+    +theme((color: 'color-text-label-optional'))
+    padding-left: $space-05
+    font-weight: normal
+    content: '(optional)'
+
+// hint
+.tw-form__hint
+  +theme((color: 'color-text-hint'))
+  +baseline($font-size-7, $below: 0)
+  display: block
+
+// Error States
+.tw-form__hint--error
+  display: none
+
+.tw-form__group--error
+  .tw-form__label
+    +theme((color: 'color-text-error'))
+
+  .tw-form__input,
+  .tw-form__input:focus
+    +theme
+      box-shadow: inset 0 0 0 token('border-width') token('color-border-input-error')
+
+  .tw-form__hint
+    display: none
+
+  .tw-form__hint--error
+    +theme((color: 'color-text-error'))
+    display: block

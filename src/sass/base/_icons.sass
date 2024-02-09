@@ -1,0 +1,88 @@
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+// Icon colors.
+$icon-size        : 16px
+$icon-color       : $hinted-grey-2
+$icon-color-dark  : $hinted-grey-13
+$icon-color-purple: $twitch-purple
+$icon-color-red   : $red
+$icon-color-white : $white
+
+.icon
+  display: inline-block
+  vertical-align: middle
+
+  svg,
+  img
+    +square($icon-size)
+    display: inline-block
+    fill: $icon-color
+    vertical-align: middle
+
+// 16, 32, 48, 64, 80, 96
+// icon--16px, icon--32px, etc.
+@for $i from 1 through 6
+  .icon--size-#{$i}
+    +square($i*$icon-size)
+
+    svg,
+    img
+      +square($i*$icon-size)
+
+.icon--baseline
+  vertical-align: baseline
+
+.icon--inline
+  display: inline-block
+  vertical-align: middle
+
+// Align inside or next to button.
+.icon--btn
+  display: inline-block
+  height: 3rem
+  line-height: 3rem
+
+.icon--textbottom
+  vertical-align: text-bottom
+
+.icon--white
+  svg
+    fill: $icon-color-white
+
+.icon--purple
+  svg
+    fill: $icon-color-dark
+
+.icon--red
+  svg
+    fill: $icon-color-red
+
+.icon--light
+  svg
+    fill: $icon-color-dark
+
+// Twitch logo dimensions.
+$twitch-w: 94px
+$twitch-h: 40px
+$resize-sm: 0.5
+
+.twitch--sm
+  svg
+    width: $twitch-w * $resize-sm
+    height: $twitch-h * $resize-sm
+
+.twitch--md
+  svg
+    width: $twitch-w
+    height: $twitch-h
+
+.twitch--lg
+  svg
+    width: $twitch-w * 2
+    height: $twitch-h * 2
+
+// Glitch sizes.
+.glitch--sm
+  width: 3rem
+  height: 3rem

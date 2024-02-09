@@ -1,0 +1,56 @@
+@import core.variables
+
+.tw-video-preview-card
+  a:hover
+    text-decoration: none
+    .tw-video-preview-card__title
+      +theme((color: color-text-link))
+
+  &__meta
+    font-size: $font-size-6
+
+  &__title
+    +theme((color: color-text))
+    font-size: $font-size-5
+    line-height: 2rem
+    margin-top: $space-05
+
+    // Line Clamping
+    position: relative;
+    overflow: hidden;
+    min-height: 2rem;
+    max-height: 4rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    a
+      +theme((color: color-text))
+
+  &__info
+    +theme((color: color-text-alt-2))
+    a
+      +theme((color: color-text-alt-2))
+
+  &__boxart
+    margin: $space-05 $space-1 0 0
+    width: 4rem
+
+    img
+      height: calc(4/3 * 4rem)
+
+  &__boxart--overlay
+    +theme
+      border: 2px solid token-get(color-background)
+    margin: 0
+    position: absolute
+    bottom: 0
+    right: 0
+    border-bottom: none
+    border-right: none
+    box-sizing: content-box
+
+  &__image-wrapper
+    transition: opacity $timer-fast linear
+
+  &--watched
+    .tw-video-preview-card__image-wrapper
+      opacity: 0.6

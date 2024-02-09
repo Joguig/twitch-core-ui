@@ -1,0 +1,81 @@
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+// Disabling `no-universal-selectors` lint – though we should consider either
+// being more specific in applying `box-sizing` or utilize a reset file.
+// sass-lint:disable no-universal-selectors
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+// sass-lint:enable no-universal-selectors
+
+// Setting root sizes and base styles.
+html
+  +rootsize
+  text-size-adjust: 100%
+
+// Site-wide base styles.
+body
+  +theme((background: 'color-background', color: 'color-text'))
+  font-family: $font-base
+  font-size: $font-size-base
+  line-height: 2rem
+
+// Images
+img
+  border: none
+  vertical-align: top
+  max-width: 100%
+
+// Anchors / Links
+a
+  +theme((color: 'color-text-link'))
+  text-decoration: none
+
+  &:hover
+    +theme((color: 'color-text-link-hover'))
+    text-decoration: underline
+
+// List resets
+ul,
+ol,
+li
+  list-style-type: none
+
+li
+  list-style-position: inside
+
+// Heading weight resets
+h1,
+h2,
+h3,
+h4,
+h5
+  font-weight: $font-weight-hdr
+
+// Buttons
+button
+  border: none
+  background: none
+  color: inherit
+  font-size: 100%
+
+  &:hover
+    cursor: pointer
+
+// For facebook likes and stuff
+iframe
+  border: none
+
+fieldset
+  border: none
+
+// Remove internet explorer's input x button
+input
+  &[type='text']::-ms-clear
+    display: none
+
+// Reset hr default styling.
+hr
+  border: none

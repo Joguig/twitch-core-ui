@@ -1,0 +1,192 @@
+@import 'core.variables'
+
+$balloon-hotspot-size:  12px
+$balloon-arrow-size:    6px
+$balloon-arrow-offset:  6px
+
+.tw-balloon
+  +theme
+    border-radius: token('border-radius')
+    background: token('color-background')
+    color: token('color-text')
+    box-shadow: 0 0 0 token('border-width') token('color-border'), token('shadow-balloon')
+  display: none
+  position: absolute
+  left: 0
+  min-width: 16rem
+  max-width: 90vw
+  padding: $space-1
+  font-size: $font-size-6
+  line-height: 1.5rem
+  text-align: left
+  z-index: 99999
+
+  &::before,
+  &::after
+    position: absolute
+    content: ''
+
+  &::before
+    top: -$balloon-arrow-size
+    left: -$balloon-arrow-size
+    width: calc(100% + #{$balloon-arrow-size * 2})
+    height: calc(100% + #{$balloon-arrow-size * 2})
+    z-index: -1
+
+  &::after
+    +theme((background: 'color-background'))
+    width: $balloon-arrow-size
+    height: $balloon-arrow-size
+    transform: rotate(45deg)
+    z-index: -1
+
+
+  // Direction Modifiers
+  // --------------------------------------------------------------------------
+  &--left
+    top: 0
+    right: 100%
+    left: auto
+    margin-right: $balloon-arrow-size
+
+    &::after
+      +theme
+        border-radius: 0 token('border-radius') 0 0
+        box-shadow: token('border-width') -1*token('border-width') 0 token('color-border')
+      top: $balloon-arrow-offset
+      left: 100%
+      margin-left: -$balloon-arrow-size / 2
+
+  &--right
+    top: 0
+    left: 100%
+    margin-left: $balloon-arrow-size
+
+    &::after
+      +theme
+        border-radius: 0 0 0 token('border-radius')
+        box-shadow: -1*token('border-width') token('border-width') 0 token('color-border')
+      top: $balloon-arrow-offset
+      left: 0
+      margin-left: -$balloon-arrow-size / 2
+
+  &--left,
+  &--right
+    &.tw-balloon--center
+      top: 50%
+      transform: translateY(-50%)
+      &::after
+        top: 50%
+        margin-top: -$balloon-arrow-size / 2
+
+  &--up
+    top: auto
+    bottom: 100%
+    left: 0
+    margin-bottom: $balloon-arrow-size
+
+    &::after
+      +theme
+        border-radius: 0 0 token('border-radius')
+        box-shadow: token('border-width') token('border-width') 0 token('color-border')
+      top: 100%
+      left: $balloon-arrow-offset
+      margin-top: -$balloon-arrow-size / 2
+
+  &--down
+    top: 100%
+    left: 0
+    margin-top: $balloon-arrow-size
+
+    &::after
+      +theme
+        border-radius: token('border-radius') 0 0
+        box-shadow: -1*token('border-width') -1*token('border-width') 0 token('color-border')
+      top: -$balloon-arrow-size / 2
+      left: $balloon-arrow-offset
+
+  &--up,
+  &--down
+
+    &.tw-balloon--center
+      left: 50%
+      transform: translateX(-50%)
+
+      &::after
+        left: 50%
+        margin-left: (-$balloon-arrow-size / 2)
+
+    &.tw-balloon--right
+      top: auto
+      right: 0
+      left: auto
+
+      &::after
+        top: 100%
+        left: 100%
+        margin-left: -$balloon-arrow-offset - $balloon-arrow-size
+
+  &--down
+    &.tw-balloon--right
+      top: 100%
+      &::after
+        top: -$balloon-arrow-size / 2
+        left: 100%
+        margin-left: -$balloon-arrow-offset - $balloon-arrow-size
+
+
+
+  // No Tail
+  // --------------------------------------------------------------------------
+  &--no-tail
+    margin-top: 0
+    margin-bottom: 0
+
+    &::after
+      display: none
+
+
+  // No Padding
+  // --------------------------------------------------------------------------
+  &--no-padding
+    padding: 0
+
+
+  // Tooltip Modifier
+  // --------------------------------------------------------------------------
+  &--tooltip
+    +theme
+      background: token('color-background-balloon-tooltip')
+      color: token('color-text-balloon-tooltip')
+      box-shadow: none
+    min-width: 0
+    padding: ($balloon-arrow-size / 2) $balloon-arrow-size
+    white-space: nowrap
+    pointer-events: none
+
+    &::after
+      +theme
+        background: token('color-background-balloon-tooltip')
+        box-shadow: none
+
+
+  // Size Modifiers
+  // --------------------------------------------------------------------------
+  &--xs
+    width: 10rem
+    min-width: 10rem
+
+  &--sm
+    width: 20rem
+
+  &--md
+    width: 30rem
+
+  &--lg
+    width: 40rem
+
+  &--xl
+    width: 50rem
+
+  &--full
+    width: 100%

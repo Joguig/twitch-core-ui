@@ -1,0 +1,26 @@
+@import core.variables
+
+.documentation-props
+
+  &__wrapper
+    max-height: 72rem
+    overflow: auto
+
+  &__header
+    +theme
+      background: token('color-background-alt')
+      border: token('border-width') solid token('color-border')
+      border-top-left-radius: token('border-radius')
+      border-top-right-radius: token('border-radius')
+
+  &__header-item
+    +theme
+      color: token('color-text-alt-2')
+    width: 20%
+    font-size: 1rem
+    font-weight: 400
+    letter-spacing: 0.1em
+    text-transform: uppercase
+
+    &:last-of-type
+      width: 40%

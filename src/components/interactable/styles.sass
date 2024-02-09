@@ -1,0 +1,32 @@
+@import core.variables
+
+.interactable
+  +theme((color: color-text-link))
+  display: block
+  width: 100%
+  text-align: left // overide for default browser button styles that should be a in a reset
+  text-decoration: none
+
+  &:hover,
+  &--hover
+    +theme((color: color-text-interactable-hover, background: color-background-interactable-hover))
+    text-decoration: none
+  &:active
+    +theme
+      background: token(color-background-interactable-active)
+      color: token(color-text-interactable-active)
+  &:focus
+    +theme((box-shadow: 'shadow-interactable-focus'))
+    outline: 0
+  &--selected
+    +theme
+      background: token-get(color-background-interactable-selected)
+      color: token-get(color-text-interactable-selected)
+  &:disabled,
+  &--disabled
+    +theme
+      border-color: token-get('color-border-button-disabled')
+      background: token-get('color-background-button-disabled')
+      color: token-get('color-text-button-disabled')
+    cursor: default
+    pointer-events: none

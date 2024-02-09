@@ -1,0 +1,356 @@
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+// Set this on a form, fieldset or div that holds an input box. Usually used
+// when you need to set an active state to the form or give position relative
+// for the icons.
+.form__input-group
+  position: relative
+  flex-grow: 1
+
+// Icons within a form group
+.form__icon-group
+  position: absolute
+  top: 0
+  left: 0
+
+.form__icon-group--right
+  right: 0
+  left: auto
+
+.form__icon
+  display: flex
+  align-items: center
+  justify-content: center
+  min-width: 3rem
+  height: 3rem
+  float: left
+
+  svg
+    +theme((fill: 'color-text-input'))
+
+
+// Main Input and Text Area
+// ----------------------------------------------------------------------------
+// sass-lint:disable force-attribute-nesting no-vendor-prefixes
+
+select.form__input,
+textarea.form__input,
+.form__input[type='text'],
+.form__input[type='email'],
+.form__input[type='password'],
+.form__input[type='search']
+  +theme
+    // In order for transitions to work properly with multiline box-shadows,
+    // each shadow must be defined at the start and finish of the transition.
+    // In this case, the focus shadow starts as invisible: `0 0 0 transparent`.
+    box-shadow: inset 0 0 0 token('border-width') token('color-border-input'), 0 0 0 transparent
+    background-color: token('color-background-input')
+    color: token('color-text-input')
+  display: block
+  position: relative
+  width: 100%
+  padding: $space-05 $space-1
+  transition: box-shadow $timer-fast ease-in
+  appearance: none
+  border: none
+  border-radius: 0
+  font-family: inherit
+  font-size: $font-size-6
+  line-height: 2rem
+  outline: 0
+  resize: both
+
+  &::placeholder
+    +theme((color: 'color-text-input-placeholder'))
+
+  // IE has a clear button which works against our ajax search
+  &::-ms-clear
+    display: none
+
+  &:-moz-focus-inner
+    padding: 0
+    border: none
+
+  &:focus
+    +theme
+      box-shadow: inset 0 0 0 token('border-width') token('color-border-input-focus'), token('shadow-input-focus')
+
+  // Size Modifiers
+  &.form__input--lg
+    // Min-height is set to fix issue in IE11 where input doesn't stretch to
+    // adapt to line-height. We use min-height instead of height to allow for
+    // things like textarea elements to be taller.
+    min-height: 4rem
+    font-size: $font-size-4
+    line-height: 3rem
+
+  // Padding modifier to indicate an icon is grouped with the input
+  .form__input-group--icon-left &
+    padding-left: $space-4
+
+  .form__input-group--icon-right &
+    padding-right: $space-4
+
+  .form__input-group--2-icons-right &
+    padding-right: $space-7
+
+  &:disabled
+    opacity: 0.5
+    pointer-events: none
+// sass-lint:enable force-attribute-nesting no-vendor-prefixes
+
+
+// Checkbox and Radio
+// ----------------------------------------------------------------------------
+.form__input
+  &[type='checkbox'],
+  &[type='radio']
+    +a11y-hide
+    +theme((color: 'color-text-label'))
+
+    + label
+      +theme((color: 'color-text-label'))
+      display: block
+      position: relative
+      padding: 0 0 0 2.2rem
+      cursor: pointer
+
+      &::before
+        +theme
+          box-shadow: inset 0 0 0 token('border-width') token('color-border-input'), 0 0 0 transparent
+          background: token('color-background-input')
+        position: absolute
+        top: 50%
+        left: 0
+        width: 1.6rem
+        height: 1.6rem
+        margin-top: -0.8rem
+        transition: box-shadow $timer-fast ease-in, background $timer-fast ease-in
+        content: ''
+
+    &:disabled
+      + label
+        opacity: 0.5
+        pointer-events: none
+
+    &:focus
+      + label
+        &::before
+          +theme
+            box-shadow: inset 0 0 0 token('border-width') token('color-border-input-focus'), token('shadow-input-focus')
+
+  // Checkbox
+  // --------------------------------------------------------------------------
+  &[type='checkbox']
+    &:checked
+      + label
+        &::before
+          +theme
+            background: token('color-background-input-checked')
+            box-shadow: inset 0 0 0 token('border-width') token('color-border-input-checked')
+
+        &::after
+          +theme
+            border-bottom: 2px solid token('color-icon-input-checked')
+            border-left: 2px solid token('color-icon-input-checked')
+          display: block
+          position: absolute
+          top: 50%
+          left: 0.8rem
+          width: 0.7rem
+          height: 0.3rem
+          margin-top: -0.1rem
+          transform: translate3d(-50%, -50%, 0) rotate(-45deg)
+          content: ''
+
+      // Because we use box-shadow for border, the actual box-shadow on focus
+      // is overwritten by the :checked state's border declaration.
+      &:checked:focus
+        + label
+          &::before
+            box-shadow: inset 0 0 0 token('border-width') token('color-border-input-checked'), token('shadow-input-focus')
+
+  // Radio
+  // --------------------------------------------------------------------------
+  &[type='radio']
+    + label
+      &::before
+        transition: box-shadow $timer-fast ease-in
+        border-radius: 50%
+
+      &::after
+        +theme((background: 'color-background-input'))
+        display: block
+        transition: background $timer-fast ease-in
+        content: ''
+
+    &:checked
+      + label
+        &::after
+          +theme((background: 'color-background-input-checked'))
+          position: absolute
+          top: 50%
+          left: 0.3rem
+          width: 1rem
+          height: 1rem
+          transform: translate3d(0, -50%, 0)
+          border-radius: 50%
+
+// Select
+// ----------------------------------------------------------------------------
+select
+  &.form__input
+    display: block
+    position: relative
+    padding-right: $space-3
+    background-image: url('data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2012%2012%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20fill%3D%22%23898395%22%3E%3Cpolygon%20points%3D%226%2C1%2010%2C5%202%2C5%22/%3E%20%3Cpolygon%20points%3D%226%2C11%2010%2C7%202%2C7%22/%3E%3C/svg%3E')
+    background-repeat: no-repeat
+    background-position: right 1rem center
+    background-size: 1.2rem
+    cursor: pointer
+    appearance: none
+
+
+// Input Modifiers
+// ----------------------------------------------------------------------------
+
+// Modifier to force inline-block use
+.form__input--inline
+  display: inline-block
+  width: auto
+
+// Labels
+.form__label
+  +theme((color: 'color-text-label'))
+  +baseline($font-size-6, $lineheight: 1)
+  display: inline-block
+  position: relative
+  font-weight: $font-weight-bold
+
+.form__label--optional
+  &::after
+    +theme((color: 'color-text-label-optional'))
+    padding-left: $space-05
+    font-weight: normal
+    content: '(optional)'
+
+// hint
+.form__hint
+  +theme((color: 'color-text-hint'))
+  +baseline($font-size-7, $below: 0)
+  display: block
+
+// Error States
+.form__hint--error
+  display: none
+
+.form__group--error
+  .form__label
+    +theme((color: 'color-text-error'))
+
+  .form__input,
+  .form__input:focus
+    +theme
+      box-shadow: inset 0 0 0 token('border-width') token('color-border-input-error')
+
+  .form__hint
+    display: none
+
+  .form__hint--error
+    +theme((color: 'color-text-error'))
+    display: block
+
+
+
+// Range
+// ----------------------------------------------------------------------------
+
+// Range settings.
+$track-height: 0.5rem
+$thumb-height: 2.5rem
+$thumb-width: 1rem
+
+// The vendor prefixes don't work properly when selected together (via commas),
+// so we're using mixins to consolidate the styles while selecting the
+// pseudo-elements separately.
+=range-slider
+  +theme
+    background: token('color-border-input')
+    box-shadow: token('color-border-input') 0 0 0 token('border-width') inset
+  width: 100%
+  height: $track-height
+  cursor: pointer
+
+=range-thumb
+  +theme
+    box-shadow: token('color-border-input') 0 0 0 token('border-width') inset
+  height: $thumb-height
+  width: $thumb-width
+  background: $white
+  margin-top: ($track-height / 2) - ($thumb-height / 2)
+  border-radius: 1px
+  border: none
+  appearance: none
+
+=range-thumb-focus
+  +theme
+    box-shadow: token('color-border-input-focus') 0 0 0 token('border-width') inset, token('shadow-input-focus')
+
+=range-lower-upper
+  +theme
+    background: token('color-border-input')
+    box-shadow: token('color-border-input') 0 0 0 token('border-width') inset
+
+.form__input
+  &[type='range']
+    width: 100%
+    height: $thumb-height
+    border: none
+    background: transparent
+    vertical-align: middle
+    appearance: none
+
+    // Slider
+    // ------------------------------------------------------------------------
+    &::-moz-range-track
+      +range-slider
+
+    &::-ms-track
+      +range-slider
+
+    &::-webkit-slider-runnable-track
+      +range-slider
+
+    // Thumb
+    // ------------------------------------------------------------------------
+    &::-moz-range-thumb
+      +range-thumb
+
+    &::-ms-thumb
+      +range-thumb
+
+    &::-webkit-slider-thumb
+      +range-thumb
+
+    // Lower/Upper
+    // ------------------------------------------------------------------------
+    &::-ms-fill-lower
+      +range-lower-upper
+
+    &::-ms-fill-upper
+      +range-lower-upper
+
+    // Thumb (focused)
+    // ------------------------------------------------------------------------
+    &:focus
+      outline: none
+
+      &::-moz-range-thumb
+        +range-thumb-focus
+
+      &::-ms-thumb
+        +range-thumb-focus
+
+      &::-webkit-slider-thumb
+        +range-thumb-focus

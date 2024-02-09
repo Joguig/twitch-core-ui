@@ -1,0 +1,83 @@
+@import core.all
+
+*
+  box-sizing: border-box
+
+body,
+html
+  +theme((background: 'color-background'))
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'
+  font-weight: 300
+
+main
+  display: block
+  min-height: 100vh
+  padding: 10rem 5rem 10rem 30rem
+  box-shadow: -4px 10px 50px -15px rgba(0, 0, 0, 0.05)
+
+section
+  margin: $space-1 0 $space-2
+
+.content-wrapper
+  width: 100%
+  max-width: 108rem
+  margin: 0 auto
+  padding: 0 $space-5
+
+.text-wrapper
+  max-width: 65rem
+
+.heading
+  margin-bottom: $space-1
+  font-family: $font-display
+
+  span
+    font-family: $font-base
+
+.section
+  &__heading
+    +theme
+      color: token('color-text')
+    margin-bottom: $space-2
+    font-size: $font-size-3
+
+  &__sub-heading
+    +theme
+      color: token-get('color-text')
+    margin-bottom: $space-1
+    font-weight: $font-weight-bold
+
+  &__body
+    +theme
+      color: token('color-text-alt')
+    margin-bottom: $space-3
+
+    p
+      margin-bottom: $space-1
+      font-size: $font-size-4
+      line-height: 1.7
+
+    code
+      +theme
+        border: token('border-width') solid token('color-border')
+        background: token('color-background-alt-2')
+      padding: 0.1rem 0.5rem
+      border-radius: 4px
+
+  &__list
+    margin-bottom: $space-2
+    padding: 0 $space-2
+    font-size: $font-size-4
+
+    li
+     list-style-type: disc
+     padding: $space-05 0
+
+  &__code-block
+    +theme
+      border: token-get('border-width') solid token-get('color-border')
+      background: token-get('color-background-alt-2')
+    margin-bottom: $space-3
+    padding: $space-1 $space-2
+    border-radius: 4px
+    font-size: $font-size-4

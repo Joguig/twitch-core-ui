@@ -1,0 +1,81 @@
+@import 'core.variables'
+
+.tw-form__icon-group
+  position: absolute
+  top: 0
+  left: 0
+
+.tw-form__icon-group--right
+  right: 0
+  left: auto
+
+.tw-form__icon
+  display: flex
+  align-items: center
+  justify-content: center
+  min-width: 3rem
+  height: 3rem
+  float: left
+
+  svg
+    +theme((fill: 'color-text-input'))
+
+
+// sass-lint:disable force-attribute-nesting no-vendor-prefixes
+.tw-form__input,
+textarea.tw-form__input,
+.tw-form__input[type='text'],
+.tw-form__input[type='email'],
+.tw-form__input[type='password'],
+.tw-form__input[type='search']
+  +theme
+    box-shadow: inset 0 0 0 token('border-width') token('color-border-input'), 0 0 0 transparent
+    background-color: token('color-background-input')
+    color: token('color-text-input')
+  display: block
+  position: relative
+  width: 100%
+  padding: $space-05 $space-1
+  transition: box-shadow $timer-fast ease-in
+  appearance: none
+  border: none
+  border-radius: 0
+  font-family: inherit
+  font-size: $font-size-6
+  line-height: 2rem
+  outline: 0
+  resize: both
+
+  &::placeholder
+    +theme((color: 'color-text-input-placeholder'))
+
+  &::-ms-clear
+    display: none
+
+  &:-moz-focus-inner
+    padding: 0
+    border: none
+
+  &:focus
+    +theme
+      box-shadow: inset 0 0 0 token('border-width') token('color-border-input-focus'), token('shadow-input-focus')
+
+
+  &.tw-form__input--lg
+    min-height: 4rem
+    font-size: $font-size-4
+    line-height: 3rem
+
+  .tw-form__input-group--icon-left &
+    padding-left: $space-4
+
+  .tw-form__input-group--icon-right &
+    padding-right: $space-4
+
+  .tw-form__input-group--2-icons-right &
+    padding-right: $space-7
+
+  &:disabled
+    opacity: 0.5
+    pointer-events: none
+// sass-lint:enable force-attribute-nesting no-vendor-prefixes

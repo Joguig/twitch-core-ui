@@ -1,0 +1,94 @@
+// Twitch Core UI
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+// Themes
+// ---------------------------------------------------------------------------
+@import 'theme-light'
+@import 'theme-dark'
+
+// Create an index of available themes.
+$themes: ('dark': $theme-dark, 'light': $theme-light) !default
+$default-theme: 'light' !default
+
+
+// Token Getter
+// ---------------------------------------------------------------------------
+// Shortcut for map--get($theme, 'token-name')
+
+@function token($token)
+  @if map-has-key($theme, $token)
+    @return map-get($theme, $token)
+  @else
+    @error 'Invalid token name: `#{$token}`.'
+
+
+// Theming Mixin
+// ---------------------------------------------------------------------------
+// https://git-aws.internal.justin.tv/web/phoenix/issues/164
+
+=print-theme-styles($property-map, $theme)
+  @each $property, $key in $property-map
+    @if map-has-key($theme, $key)
+      #{$property}: map-get($theme, $key)
+    @else
+      @error 'Invalid token name: `#{$key}`.'
+
+=theme($property: '', $dark: inherit, $light: inherit)
+
+  // If a map of properties and their tokens is passed, ie:
+  // ```
+  // +theme((background: 'color-background', color: 'color-text'))
+  // ```
+  @if type-of($property) == 'map'
+    //Argument Maps
+    $property-map: $property
+    @each $current-theme in map-keys($themes)
+      $theme: map-get($themes, $current-theme)
+
+      @if $current-theme == $default-theme
+        +print-theme-styles($property-map, $theme)
+
+      .theme--#{$current-theme} &
+        +print-theme-styles($property-map, $theme)
+
+  // If each selector and token is passed on it's own line, ie:
+  // ```
+  // +theme
+  //   background: token('color-text')
+  //   color: token('color-background')
+  // ```
+  @else if $property == ''
+    //Current Theme
+    @each $current-theme in map-keys($themes)
+      // Have to use !global hack to set current theme, and then
+      // reference the magic $theme variable in map-get calls,
+      // which is ugly. Also potential for bugs there, if you
+      // reference $theme without wrapping it in @include theme().
+      $theme: map-get($themes, $current-theme) !global
+
+      @if $current-theme == $default-theme
+        @content
+
+      .theme--#{$current-theme} &
+        @content
+
+  // Legacy implementation, ie: light and dark.
+  @else if type-of($property) == 'string'
+    #{$property}: $light
+    .theme--dark &
+      #{$property}: $dark
+    .theme--light &
+      #{$property}: $light
+
+
+// Deprecated
+// ---------------------------------------------------------------------------
+
+// 06.21.2017: `token-get($token)` is being deprecated in favor of the
+// simpler `token($token)`.
+@function token-get($token)
+  @if map-has-key($theme, $token)
+    @return map-get($theme, $token)
+  @else
+    @error 'Invalid token name: `#{$token}`.'

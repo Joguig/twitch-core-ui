@@ -1,0 +1,379 @@
+// Twitch Core UI
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+@keyframes vod-animated-preview
+  to
+    transform: translateY(-100%)
+
+// Card
+// ----------------------------------------------------------------------------
+// Cards with images and info found in directory and feeds throughtout the site.
+.card
+  position: relative
+  margin-bottom: $space-1
+
+  a:hover
+    +theme((color: 'color-text'))
+    text-decoration: none
+
+  svg
+    vertical-align: middle
+
+
+// Bordered Card
+// ----------------------------------------------------------------------------
+
+// Adds border and padding to cards.
+.card--bordered
+  +theme
+    background: token('color-background')
+    border: token('border-width') solid token('color-border')
+
+  // Some elements of cards are designed to stretch across the entire card. We
+  // should either consider adding a modifier to add padding explicity or
+  // simply use padding classes.
+  .card__body
+    padding: $space-1
+
+
+// Card Layout
+// ----------------------------------------------------------------------------
+// Card wrap is used to set the flex direction of the cards. It can be used on
+// the anchor tag of our most simple cards or used as a wrapper div for our
+// complex layouts.
+.card__layout
+  display: block
+  position: relative
+
+// CARD Image
+// ----------------------------------------------------------------------------
+//  Card image uses percentage based placeholder sizes to effectively draw the
+//  DOM onto the page before the image even downloads. Our base aspect ratio is
+//  16*9 and modifiers for boxart and vod (with auto cropping of our legacy
+//  black bars) are available.
+.card__img
+  +theme((background-color: 'color-background-alt'))
+  display: block
+  position: relative
+  flex-shrink: 0
+  padding-bottom: 56.25%
+  overflow: hidden
+
+  img
+    display: block
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    width: 100%
+    height: 100%
+
+.card__img--avatar
+  &::after
+    +theme(border, (1px solid rgba($white, 0.3)))
+
+.card__img--boxart
+  padding-bottom: percentage(380/272)
+
+// Auto clip the 4x3 (or 16x12) vod images to use 16x9
+// Math goes (12-9) / 2 / 16 * -100 = -9.375%
+// Subtract the amount of height dead space left by artificial black bars
+// (12-9) and divide by 2. Divide this amount by the width (16). Multiply by
+// -100 to get negative percentage.
+.card__img--vod
+  img
+    height: auto
+    margin: -9.375% 0
+
+// For when you want a card imaage to be inside of card_body such as in our
+// unified view.
+.card__img--sidekick
+  width: 4rem
+  height: 2.25rem
+  margin: 0 $space-1 0 0
+  padding-bottom: 0
+  float: left
+
+  &.card__img--boxart
+    width: 4rem
+    height: 5.33rem
+  &.card__img--avatar
+    width: 4rem
+    height: 4rem
+
+// For animated video previews on thumbnail hover using filmstrip JPEGs.
+.card__img--animated
+  img
+    position: absolute
+    top: auto
+    right: auto
+    bottom: auto
+    left: auto
+    width: 100%
+    height: auto
+    animation: vod-animated-preview 6s steps(10, end) infinite
+
+// Pin the boxart.
+.card__boxpin
+  +corner('bottom right')
+  width: 4rem
+
+  img
+    position: relative
+    margin: 0
+
+
+// Card Body Holds Title and Info
+// ----------------------------------------------------------------------------
+.card__body
+  +clearfix
+  padding: $space-05 0 0
+  position: relative
+  min-width: 0
+
+// Alternative card__body has an shaded background. For elements such as
+// comments, buttons, etc.
+.card__body--alt
+  +theme
+    background: token('color-background-alt')
+
+
+// Card Overlay
+// ----------------------------------------------------------------------------
+// Overlay covers thumbs and sits behind card__body.
+.card__overlay
+  +content-block
+  display: flex
+  flex-direction: column
+  justify-content: flex-end
+  padding: 0 $space-1 $space-1
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAABkCAMAAACbxRFRAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAnFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4jUzeAAAAM3RSTlMAAwgNERcWHSMpKjAxOD9GR05PVldfXmZnb3d/iIePkJiXn6eutby9w8nP1dna3uLj5uXSLV7qAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAGlJREFUGNPNxzcWgkAAANFhiSpBUUSWKEGSoHD/w1lb0jHvNwO7SVEQAlVF09ANTBPL4nDkZOM4uC7emYvP9UZwJ3wQRUhJHJOkZDnFk7KkqqhrmoZXS9fR9wwD48h7Yp75fFmWDda//QFGfg4moECXqwAAAABJRU5ErkJggg==') repeat-x bottom
+  // Create this gradient using data: to improve paint performance
+  background-size: auto 100%
+  overflow: hidden
+
+  .card__bread,
+  .card__title
+    +theme((color: 'color-text-overlay'))
+
+  .card__info
+    +theme((color: 'color-text-overlay-alt'))
+
+  a:hover &,
+  a:focus &
+    .card__title
+      +theme((color: 'color-text-overlay'))
+
+
+// Main card text stylings
+// ----------------------------------------------------------------------------
+// Need a new word for this. But this is the text above the title.
+.card__bread
+  +baseline($font-size-6, $lineheight: 2, $below: 0)
+  +theme((color: 'color-text-alt-2'))
+
+  a
+    +theme((color: 'color-text-alt-2'))
+
+.card__title
+  +baseline($font-size-5, $lineheight: 2, $below: 0)
+  +theme((color: 'color-text'))
+
+  a
+    +theme((color: 'color-text'))
+
+    &:hover
+      +theme((color: 'color-text-link'))
+
+  a:hover &
+    +theme((color: 'color-text-link'))
+
+.card__info
+  +baseline($font-size-6, $lineheight: 2, $below: 0)
+  +theme((color: 'color-text-alt-2'))
+
+  a
+    +theme((color: 'color-text-alt-2'))
+    display: inline
+
+    &:hover
+      +theme((color: 'color-text-link'))
+
+  time
+    float: right
+
+// Card Play
+// ----------------------------------------------------------------------------
+// Positions & styles the play button of an embedded video.
+.card__play
+  display: flex
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  align-items: center
+  justify-content: center
+
+  svg
+    width: auto
+    height: 20%
+    margin: 0 auto
+    fill: $white
+
+// Tiny meta overlays for view info found over thumbs
+// ----------------------------------------------------------------------------
+.card__meta
+  +theme((background: 'color-background-overlay', color: 'color-text-overlay'))
+  display: inline-flex
+  position: absolute
+  top: 0
+  align-items: center
+  margin: $space-05
+  padding: 0 $space-05
+  font-size: $font-size-7
+
+  svg
+    +theme((fill: 'color-text-overlay'))
+    width: 1.6rem
+    height: 1.6rem
+    margin-right: $space-05
+
+// Pin left or pin right modifier.
+.card__meta--left
+  left: 0
+
+.card__meta--right
+  right: 0
+
+// Pin below modifier if there is already a meta overlay.
+.card__meta--below
+  top: 2.4rem
+
+.card__meta--alert
+  width: 2.4rem
+  height: 2.4rem
+  padding: 0.4rem
+  background: $red
+
+  svg
+    margin-right: 0
+
+// Delete (x) button on card thumbnail overlays.
+.card__delete
+  position: absolute
+  top: 0.5rem
+  right: 0.5rem
+  svg
+    +theme((fill: 'color-text-overlay-alt'))
+    width: 1.6rem
+    height: 1.6rem
+
+// Card List Modifier
+// ----------------------------------------------------------------------------
+// This places all elements inside the actual card. Undecided wether to make
+// subsequent selectors under unified or make them modifiers themselves. Does
+// not support out card__overlay style.
+.card--row
+  margin-bottom: 0
+
+  .card__layout
+    display: flex
+    flex-direction: row
+    align-items: center
+
+  .card__img
+    width: 16rem
+    height: 9rem
+    padding-bottom: 0
+
+  .card__img--avatar
+    width: 8rem
+    height: 8rem
+
+  .card__img--boxart
+    width: 8rem
+    height: 11rem
+
+  .card__body
+    // Fix for IE11 ellipsis bug when using flex
+    flex: 1 1 0%
+    margin-left: $space-1
+    padding-top: 0
+
+
+// Card Mini Modifier
+// ----------------------------------------------------------------------------
+// When you need a card to be mini. Tighten up life.
+
+.card--xs
+  // When card__overlay exists in the card.
+  .card__overlay
+    .card__title
+      font-size: $font-size-5
+      font-weight: $font-weight-bold
+
+    .card__info
+      font-size: $font-size-6
+
+  // When combined with card--row.
+  &.card--row
+    .card__title
+      +baseline($font-size-5, $lineheight: 2, $below: 0)
+
+    .card__info
+      +baseline($font-size-6, $lineheight: 1.5, $below: 0)
+
+    .card__img
+      width: 6rem
+      height: 3.5rem
+
+    .card__img--avatar
+      width: 3rem
+      height: 3rem
+
+    .card__img--boxart
+      width: 3rem
+      height: 4rem
+
+// Used on Channel Page, Search, Autohost, and many others.
+.card--sm
+  // When card__overlay exists in the card.
+  .card__overlay
+    .card__title
+      +baseline($font-size-6, $lineheight: 1.5, $below: 0)
+      font-weight: $font-weight-bold
+
+    .card__info
+      +baseline($font-size-7, $lineheight: 1.5, $below: 0)
+
+  // When combined with card--row.
+  &.card--row
+    .card__title
+      +baseline($font-size-5, $lineheight: 1.5, $below: 0)
+
+    .card__img
+      width: 8rem
+      height: 4.5rem
+
+    .card__img--avatar
+      width: 4rem
+      height: 4rem
+
+    .card__img--boxart
+      width: 4rem
+      height: 5.5rem
+
+.card--lg
+  &.card--row
+    .card__img
+      width: 24rem
+      height: 13.5rem
+
+.card--xl
+  &.card--row
+    .card__img
+      width: 32rem
+      height: 18rem

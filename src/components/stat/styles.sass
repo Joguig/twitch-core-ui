@@ -1,0 +1,29 @@
+@import core.variables
+
+.tw-stat
+  display: inline-flex
+  align-items: center
+  line-height: 1
+  font-size: $font-size-5
+  color: currectColor
+
+  &__icon
+    display: inline-flex
+
+  &__value
+    margin-left: $space-05
+
+  &--overlay
+    // sass-lint:disable-block property-units
+    +theme((background: color-background-overlay, color: color-text-overlay))
+    z-index: 1
+    padding: 2px 4px
+
+  &--live
+    +theme((color: color-text-live))
+
+  &--sm
+    font-size: $font-size-6
+
+  &--lg
+    font-size: $font-size-3

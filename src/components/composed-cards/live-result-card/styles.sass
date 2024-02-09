@@ -1,0 +1,32 @@
+@import core.variables
+//sass-lint:disable property-units
+.tw-live-result-card
+  display: block
+  width: 100%
+
+  &__wrapper
+    position: relative
+    margin: 2px
+    overflow: hidden
+
+  &__body
+    padding: $space-05
+    transform: translateY(2.2rem)
+    transition: transform 0.2s ease
+
+  &__info
+    +theme((color: color-text-overlay-alt))
+    transition: opacity 0.2s ease
+    opacity: 0
+
+  &--hover,
+  &:hover,
+    .tw-live-result-card__body
+      transform: translateY(0)
+
+    .tw-live-result-card__info
+      opacity: 1
+
+  &__user-icon
+    +theme((fill: color-fill-live))
+    margin-right: $space-05

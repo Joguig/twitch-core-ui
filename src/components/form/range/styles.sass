@@ -1,0 +1,97 @@
+@import 'core.variables'
+
+// Range settings.
+$track-height: 0.5rem
+$thumb-height: 2.5rem
+$thumb-width: 1rem
+
+// The vendor prefixes don't work properly when selected together (via commas),
+// so we're using mixins to consolidate the styles while selecting the
+// pseudo-elements separately.
+=range-slider
+  +theme
+    background: token('color-border-input')
+    box-shadow: token('color-border-input') 0 0 0 token('border-width') inset
+  width: 100%
+  height: $track-height
+  cursor: pointer
+
+=range-thumb
+  +theme
+    box-shadow: token('color-border-input') 0 0 0 token('border-width') inset
+  height: $thumb-height
+  width: $thumb-width
+  background: $white
+  margin-top: ($track-height / 2) - ($thumb-height / 2)
+  border-radius: 1px
+  border: none
+  appearance: none
+
+=range-thumb-focus
+  +theme
+    box-shadow: token('color-border-input-focus') 0 0 0 token('border-width') inset, token('shadow-input-focus')
+
+=range-lower-upper
+  +theme
+    background: token('color-border-input')
+    box-shadow: token('color-border-input') 0 0 0 token('border-width') inset
+
+.tw-form__input
+  &[type='range']
+    width: 100%
+    height: $thumb-height
+    vertical-align: middle
+    appearance: none
+
+    &,
+    &:hover,
+    &:focus,
+    &:active
+      +theme
+        border: none
+        background: transparent
+        box-shadow: none
+
+    // Slider
+    // ------------------------------------------------------------------------
+    &::-moz-range-track
+      +range-slider
+
+    &::-ms-track
+      +range-slider
+
+    &::-webkit-slider-runnable-track
+      +range-slider
+
+    // Thumb
+    // ------------------------------------------------------------------------
+    &::-moz-range-thumb
+      +range-thumb
+
+    &::-ms-thumb
+      +range-thumb
+
+    &::-webkit-slider-thumb
+      +range-thumb
+
+    // Lower/Upper
+    // ------------------------------------------------------------------------
+    &::-ms-fill-lower
+      +range-lower-upper
+
+    &::-ms-fill-upper
+      +range-lower-upper
+
+    // Thumb (focused)
+    // ------------------------------------------------------------------------
+    &:focus
+      outline: none
+
+      &::-moz-range-thumb
+        +range-thumb-focus
+
+      &::-ms-thumb
+        +range-thumb-focus
+
+      &::-webkit-slider-thumb
+        +range-thumb-focus

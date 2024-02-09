@@ -1,0 +1,70 @@
+@import 'core.variables'
+
+$balloon-hotspot-size:  12px
+$balloon-arrow-size:    6px
+$balloon-arrow-offset:  6px
+
+
+.tw-balloon-wrapper
+  display: inline-flex
+  position: relative
+
+  &--inline
+    display: inline
+
+  &--block
+    display: block
+
+
+  &--hotspot
+    width: $balloon-hotspot-size
+    height: $balloon-hotspot-size
+    z-index: 6
+
+    &::after
+      +theme((background: 'color-background-balloon-hotspot'))
+      display: block
+      width: $balloon-hotspot-size
+      height: $balloon-hotspot-size
+      border-radius: 100%
+      content: ''
+
+    &:hover::after
+      +theme((background: 'color-background-balloon-hotspot-hover'))
+
+    .tw-balloon--left,
+    .tw-balloon--right
+      top: $balloon-hotspot-size / 2 - $balloon-arrow-size / 2 - $balloon-arrow-offset
+
+    .tw-balloon--up,
+    .tw-balloon--down
+      left: $balloon-hotspot-size / 2 - $balloon-arrow-size / 2 - $balloon-arrow-offset
+
+    .tw-balloon--up
+      &.tw-balloon--right
+        top: auto
+        right: $balloon-hotspot-size - ($balloon-arrow-size * 1.5) - $balloon-arrow-offset
+        left: auto
+
+    .tw-balloon--down
+      &.tw-balloon--right
+        top: $balloon-hotspot-size
+        right: $balloon-hotspot-size - ($balloon-arrow-size * 1.5) - $balloon-arrow-offset
+        left: auto
+
+    .tw-balloon--center
+      left: 50%
+
+
+
+  // Show/Hide Balloons
+  // --------------------------------------------------------------------------
+  &:hover
+    .tw-balloon
+      display: block
+
+    .tw-balloon--cols
+      display: flex
+
+    .tw-balloon--toggle
+      display: none

@@ -1,0 +1,137 @@
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+//-----------------------------------------------------------------------------
+// Animation definitions
+//-----------------------------------------------------------------------------
+
+// This fades in an element and brings it up from below
+@keyframes swoop
+  0%
+    transform: translateY(20px)
+    opacity: 0
+  100%
+    transform: translateY(0)
+    opacity: 1
+
+// This bounces an element up/down and includes one rebound
+// This animation is currently being used in the language filter
+@keyframes bounce
+  0%
+    transform: translateY(0)
+  50%
+    transform: translateY(-0.7rem)
+  60%
+    transform: translateY(-0.35rem)
+  70%
+    transform: translateY(0)
+  80%
+    transform: translateY(-0.125rem)
+  100%
+    transform: translateY(0)
+
+// This bumps an element up and down - like a little nudge bounce
+@keyframes bump
+  0%
+    transform: translateY(-3px)
+  33%
+    transform: translateY(-15px)
+  100%
+    transform: translateY(0)
+
+// This bumps an element left and right - like a little nudge bounce
+@keyframes bumpLeft
+  0%
+    transform: translateX(-3px)
+  33%
+    transform: translateX(-10px)
+  100%
+    transform: translateX(-5px)
+
+// Single pulse expand
+@keyframes pulse
+  0%
+    transform: scale(1)
+  25%
+    transform: scale(1.2)
+  100%
+    transform: scale(1.1)
+
+// Fade
+@keyframes fade
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+
+@keyframes magic
+  0%
+    transform: translateY(25px)
+  50%
+    transform: translateY(-25px)
+  100%
+    transform: translateY(25px)
+
+
+//-----------------------------------------------------------------------------
+// Animation classes
+//-----------------------------------------------------------------------------
+
+// Disabling `class-name-format` lint – it conflicts with `anim-bumpLeft`.
+// sass-lint:disable class-name-format
+.anim-swoop
+  &,
+  &.anim--hover:hover
+    animation: swoop 0.3s forwards ease
+
+.anim-bounce
+  &,
+  &.anim--hover:hover
+    animation: bounce 0.4s forwards ease
+
+.anim-bump
+  &,
+  &.anim--hover:hover
+    animation: bump 0.3s forwards ease
+
+.anim-bumpLeft
+  &,
+  &.anim--hover:hover
+    animation: bumpLeft 0.3s forwards ease
+
+.anim-pulse
+  &,
+  &.anim--hover:hover
+    animation: pulse 0.3s forwards ease
+
+.anim-fade
+  &,
+  &.anim--hover:hover
+    opacity: 0
+    animation: fade 0.5s forwards ease
+
+.anim-float
+  &,
+  &.anim--hover:hover
+    transform: translateY(25px)
+    animation: magic 5s infinite ease
+
+// Reenable `class-name-format` linting.
+// sass-lint:class-name-format
+
+//-----------------------------------------------------------------------------
+// Utility classes
+//-----------------------------------------------------------------------------
+
+// Makes the animation play forever when triggered
+.anim--infinite
+  animation-iteration-count: infinite
+
+// Utility classes
+@for $i from 1 through 10
+  .anim--delay-#{$i}
+    animation-delay: $i * 0.75s
+
+// Tranfers anim to trigger on hover
+.anim--hover
+  animation-name: none

@@ -1,0 +1,64 @@
+@import 'core.variables'
+
+.tw-progress-bar
+  +theme((background: 'color-background-progress'))
+  height: 1rem
+  width: 100%
+
+  &.tw-progress-bar--vod
+    +theme((background: 'color-background-progress-vod'))
+
+    .tw-progress-bar__fill
+      +theme((background: 'color-background-progress-vod-fill'))
+
+.tw-progress-bar__fill
+  +theme((background: 'color-background-progress-status'))
+  display: block
+  max-width: 100%
+  height: 100%
+
+.tw-progress-bar-wrapper
+  position: absolute
+  bottom: 0
+  left: 0
+  right: 0
+  pointer-events: none
+
+
+// Size Modifiers
+// ----------------------------------------------------------------------------
+.tw-progress-bar--xs
+  height: 0.3rem
+
+.tw-progress-bar--sm
+  height: 0.5rem
+
+
+// State Modifiers
+// ----------------------------------------------------------------------------
+.tw-progress-bar--error
+  +theme((background: 'color-background-progress-status-error'))
+
+  .tw-progress-bar__fill
+    visibility: hidden
+
+.tw-progress-bar--caution
+  +theme((background: 'color-background-progress-status-caution'))
+
+  .tw-progress-bar__fill
+    visibility: hidden
+
+// Countdown
+// ----------------------------------------------------------------------------
+.tw-progress-bar--countdown
+  +theme((background: 'color-background-progress-countdown'))
+
+  .tw-progress-bar__fill
+    +theme((background: 'color-background-progress-countdown-status'))
+    width: 100%
+    animation: progress-bar-countdown linear both
+
+
+@keyframes progress-bar-countdown
+  100%
+    width: 0%

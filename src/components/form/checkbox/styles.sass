@@ -1,0 +1,89 @@
+@import 'core.variables'
+
+.tw-form__input
+  &[type='checkbox'],
+  &[type='radio']
+    +a11y-hide
+    +theme((color: 'color-text-label'))
+
+    + label
+      +theme((color: 'color-text-label'))
+      display: block
+      position: relative
+      padding: 0 0 0 2.2rem
+      cursor: pointer
+
+      &::before
+        +theme
+          box-shadow: inset 0 0 0 token('border-width') token('color-border-input'), 0 0 0 transparent
+          background: token('color-background-input')
+        position: absolute
+        top: 50%
+        left: 0
+        width: 1.6rem
+        height: 1.6rem
+        margin-top: -0.8rem
+        transition: box-shadow $timer-fast ease-in, background $timer-fast ease-in
+        content: ''
+
+    &:disabled
+      + label
+        opacity: 0.5
+        pointer-events: none
+
+    &:focus
+      + label
+        &::before
+          +theme
+            box-shadow: inset 0 0 0 token('border-width') token('color-border-input-focus'), token('shadow-input-focus')
+
+  &[type='checkbox']
+    &:checked
+      + label
+        &::before
+          +theme
+            background: token('color-background-input-checked')
+            box-shadow: inset 0 0 0 token('border-width') token('color-border-input-checked')
+
+        &::after
+          +theme
+            border-bottom: 2px solid token('color-icon-input-checked')
+            border-left: 2px solid token('color-icon-input-checked')
+          display: block
+          position: absolute
+          top: 50%
+          left: 0.8rem
+          width: 0.7rem
+          height: 0.3rem
+          margin-top: -0.1rem
+          transform: translate3d(-50%, -50%, 0) rotate(-45deg)
+          content: ''
+
+      &:checked:focus
+        + label
+          &::before
+            box-shadow: inset 0 0 0 token('border-width') token('color-border-input-checked'), token('shadow-input-focus')
+
+  &[type='radio']
+    + label
+      &::before
+        transition: box-shadow $timer-fast ease-in
+        border-radius: 50%
+
+      &::after
+        +theme((background: 'color-background-input'))
+        display: block
+        transition: background $timer-fast ease-in
+        content: ''
+
+    &:checked
+      + label
+        &::after
+          +theme((background: 'color-background-input-checked'))
+          position: absolute
+          top: 50%
+          left: 0.3rem
+          width: 1rem
+          height: 1rem
+          transform: translate3d(0, -50%, 0)
+          border-radius: 50%

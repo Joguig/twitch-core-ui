@@ -1,0 +1,17 @@
+@import 'core.variables'
+
+$brick-stroke-color-active  : $twitch-purple
+
+.tw-brick
+  +theme
+    border: token('border-width') solid token('color-border')
+    background: token('color-background-alt')
+  width: 100%
+  padding: $space-1
+
+  &--marked
+    border-left-width: 0.3rem
+    border-left-color: $brick-stroke-color-active
+
+  &--pd-none
+    padding: $space-0

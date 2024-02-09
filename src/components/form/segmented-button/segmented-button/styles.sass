@@ -1,0 +1,92 @@
+@import 'core.variables'
+
+.tw-segmented-button
+  display: inline-flex
+
+.tw-button--radio,
+.tw-button--checkbox
+  +theme
+    border: token('border-width') solid token('color-border-button-hollow')
+    background: token('color-background-button-hollow')
+    color: token('color-text-button-hollow')
+  display: flex
+  position: relative
+  padding: $space-0
+
+  &:nth-of-type(n+2)
+    &,
+    &:hover,
+    &:focus,
+    &:active
+      +theme
+        border-left: none
+
+  &:hover
+    +theme
+      border: token('border-width') solid token('color-border-button-hollow-hover')
+      background: token('color-background-button-hollow-hover')
+      color: token('color-text-button-hollow-hover')
+
+  &:focus
+    +theme
+      border: token('border-width') solid token('color-border-button-hollow-focus')
+      background: token('color-background-button-hollow-focus')
+      color: token('color-text-button-hollow-focus')
+      box-shadow: token('shadow-button-focus')
+
+  &:active,
+    +theme
+      border: token('border-width') solid token('color-border-button-hollow-active')
+      background: token('color-background-button-hollow-active')
+      color: token('color-text-button-hollow-active')
+      box-shadow: token('shadow-button-active')
+
+
+  [type='radio'],
+  [type='checkbox']
+    +a11y-hide
+
+    &:focus + .tw-button__label
+      +theme
+        background: token('color-background-button-hollow-focus')
+        color: token('color-text-button-hollow-focus')
+        box-shadow: token('shadow-button-focus')
+
+    &:active + .tw-button__label
+      +theme
+        background: token('color-background-button-hollow-active')
+        color: token('color-text-button-hollow-active')
+        box-shadow: token('shadow-button-active')
+
+    &:checked + .tw-button__label
+      +theme
+        background: token('color-background-button')
+        color: token('color-text-button')
+
+
+  [type='checkbox']
+    &:focus + .tw-button__label
+      +theme
+        background: token('color-background-button-hollow-focus')
+        color: token('color-text-button-hollow-focus')
+        box-shadow: token('shadow-button-focus')
+
+    &:active + .tw-button__label
+      +theme
+        background: token('color-background-button-hollow-active')
+        color: token('color-text-button-hollow-active')
+        box-shadow: token('shadow-button-active')
+
+    &:checked:focus + .tw-button__label
+      +theme
+        background: token('color-background-button-focus')
+        color: token('color-text-button-focus')
+
+    &:checked:active + .tw-button__label
+      +theme
+        background: token('color-background-button-active')
+        color: token('color-text-button-active')
+
+  .tw-button__label
+    padding: $space-0 $space-1
+    transition: background-color $timer-fast ease-in

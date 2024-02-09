@@ -1,0 +1,50 @@
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+// Mixins
+// ----------------------------------------------------------------------------
+
+// Convert px,rem,modular scale values
+// sass-lint:disable zero-unit indentation
+@function px-to-rem($fontsize)
+  @return $fontsize / 1px / $base-line-height + 0rem
+
+@function ms-to-rem($fontsize)
+  @return $fontsize / $base-line-height + 0rem
+
+@function rem-to-px($fontsize: 1)
+  @return $fontsize / 1rem * $base-line-height + 0px
+
+@function rem-to-ms($fontsize: 1)
+  @return $fontsize * $base-line-height
+
+
+// Sass Line (Simple)
+// ----------------------------------------------------------------------------
+
+// Root font-size in %, outputted in correct breakpoints.
+=rootsize($line-height: $base-line-height)
+  font-size: $line-height / 16 * 100%
+
+// Font-size in rems.
+// Use values as you would for pixels i.e. 16 or use values from the modular scale.
+=fontsize($fontsize)
+  font-size: #{$fontsize / $base-line-height}rem
+
+// Set fontsize and baseline at once. Mix of fontsize and baseline mixin.
+=baseline($fontsize: $base-font-size, $lineheight: 'auto', $below: 0)
+  // Lets change this to use http://hugogiraudel.com/2013/08/12/sass-functions/#unit-conversion
+  @if unit($fontsize) == 'rem'
+    $fontsize: rem-to-ms($fontsize / 1rem)
+
+  font-size: #{$fontsize / $base-line-height}rem
+
+  // Auto creates line-height in multiples of 1 rem
+  @if $lineheight == 'auto'
+    line-height: ceil(ms-to-rem($fontsize))
+    $lineheight: ceil(ms-to-rem($fontsize))/1rem
+  @else
+    line-height: #{$lineheight}rem
+
+  // Set margin which defaults to zero but necessary to be able to avoid scoping errors
+  margin-bottom: #{$below}rem

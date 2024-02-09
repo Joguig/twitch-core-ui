@@ -1,0 +1,32 @@
+@import core.variables
+// CARD
+// ----
+// Cards with images and info found in directory
+// and feeds throughout the site
+.tw-card
+  position: relative
+
+// CARD LAYOUT
+// -----------
+// Card wrap is used to set the flex direction of the cards.
+// It can be used on the anchor tag of our most simple cards or
+// used as a wrapper div for our complex layouts
+.tw-card__layout
+  display: flex
+  flex-direction: column
+
+  // Link styles reset for card__layout targets
+  // &:hover
+  //   color: inherit
+  //   text-decoration: inherit
+
+.tw-card--row
+  .tw-card__layout
+    flex-direction: row
+    align-items: center
+
+.tw-card--bordered
+  +theme
+    border-width: token('border-width')
+    border-color: token('color-background')
+    background: token('color-background')

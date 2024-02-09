@@ -1,0 +1,22 @@
+@import core.variables
+
+.video-result-card
+  width: 100%
+  padding: $space-05 $space-1
+
+  &__info
+    +theme((color: color-text-alt-2))
+
+  &__title,
+  &__info
+    margin-left: $space-1
+
+  &__highlight
+    +theme
+      color: token('color-text-link')
+
+  &--hover,
+  &:hover,
+    .video-result-card__highlight,
+    .video-result-card__info
+      color: token('color-text-button')

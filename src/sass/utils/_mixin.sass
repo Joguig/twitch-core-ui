@@ -1,0 +1,145 @@
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+// Clearfix
+// ----------------------------------------------------------------------------
+=clearfix
+  &::after
+    content: ''
+    display: table
+    clear: both
+
+
+// Accessibility Hide
+// ----------------------------------------------------------------------------
+=a11y-hide
+  width: 0.1rem
+  height: 0.1rem
+  border: none
+  clip: rect(0 0 0 0)
+  margin: -0.1rem
+  overflow: hidden
+  padding: 0
+  position: absolute
+
+// Ellipsis
+// ----------------------------------------------------------------------------
+=ellipsis
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+
+
+// White-text Font Smoothing
+// ----------------------------------------------------------------------------
+=font-smooth
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
+
+// Square Sizing
+// ----------------------------------------------------------------------------
+=square($dimen: 16px, $vertical-center: true)
+  width: $dimen
+  height: $dimen
+
+
+// Absolute Full
+// ----------------------------------------------------------------------------
+=absolute-full
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+
+
+// Stick to A Corner, Border If Image
+// ----------------------------------------------------------------------------
+=corner($stick: 'top left', $border: true, $color-body-stroke: #fff)
+  position: absolute
+  @if $border == true
+    border: 2px solid $color-body-stroke
+  @if $stick == 'top left'
+    top: 0
+    left: 0
+    border-top: none
+    border-left: none
+  @else if $stick == 'top right'
+    top: 0
+    right: 0
+    border-top: none
+    border-right: none
+  @else if $stick == 'bottom left'
+    bottom: 0
+    left: 0
+    border-bottom: none
+    border-left: none
+  @else if $stick == 'bottom right'
+    bottom: 0
+    right: 0
+    border-bottom: none
+    border-right: none
+
+
+// Force webkit browsers into hardware acceleration.
+// ----------------------------------------------------------------------------
+=forcehw($enable: true)
+  @if ($enable == true)
+    -webkit-backface-visibility: hidden
+  @else
+    -webkit-backface-visibility: visible
+
+
+// Create dummy content block for after/before.
+// ----------------------------------------------------------------------------
+=content-block($left: 0, $right: 0, $top: 0, $bottom: 0)
+  content: ''
+  display: block
+  position: absolute
+  left: $left
+  right: $right
+  top: $top
+  bottom: $bottom
+
+
+// For adding the input placeholder styles.
+// ----------------------------------------------------------------------------
+=placeholder($content: '')
+  input::-webkit-input-placeholder
+    @content
+
+  input:-moz-placeholder
+    @content
+
+  input::-moz-placeholder
+    @content
+
+  input:-ms-input-placeholder
+    @content
+
+
+// Arrows
+// ----------------------------------------------------------------------------
+=arrow($dir: down, $color: $black, $width: 6px)
+  content: ''
+  display: inline-block
+  width: 0
+  height: 0
+  border: transparent solid $width
+  @if $dir == up
+    border-bottom-width: $width
+    border-top-width: 0
+    border-bottom-color: $color
+  @else if $dir == right
+    border-left-width: $width
+    border-right-width: 0
+    border-left-color: $color
+  @else if $dir == down
+    border-top-width: $width
+    border-bottom-width: 0
+    border-top-color: $color
+  @else if $dir == left
+    border-right-width: $width
+    border-left-width: 0
+    border-right-color: $color

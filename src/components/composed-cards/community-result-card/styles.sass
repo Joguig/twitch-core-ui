@@ -1,0 +1,14 @@
+@import core.variables
+
+.community-result-card
+  width: 100%
+  padding: $space-05 $space-1
+
+  &:hover,
+  &--hover
+    .community-result-card__info
+      +theme((color: color-text-button-hover))
+
+  &__title,
+  &__info
+    padding: 0 $space-1

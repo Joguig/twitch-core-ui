@@ -1,0 +1,28 @@
+@import core.variables
+
+.documentation-markup
+  +theme
+    border-bottom-left-radius: token('border-radius')
+    border-bottom-right-radius: token('border-radius')
+  background: $twitch-purple-3
+  font-family: monospace
+  font-size: $font-size-4
+
+  pre
+    +font-smooth
+    padding: 7rem 2rem 2rem
+    color: $twitch-purple-15
+    overflow-y: hidden
+    overflow-x: auto
+
+  code
+    font-size: $font-size-4
+
+  &__label
+    position: absolute
+    top: $space-2
+    left: $space-2
+    padding: 0.2rem $space-1
+    border-radius: 4px
+    background: $twitch-purple-15
+    color: $twitch-purple-6

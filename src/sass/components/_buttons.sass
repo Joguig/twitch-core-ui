@@ -1,0 +1,427 @@
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+// " These buttons were made for clicking and that's just what they'll do. One
+//   of these days these buttons are gonna click all over you.
+
+// Default
+// ----------------------------------------------------------------------------
+button
+  font-family: inherit
+  &::-moz-focus-inner
+    border: none
+
+
+// Base (primary) button styles
+// ----------------------------------------------------------------------------
+.button
+  +theme((background: 'color-background-button', color: 'color-text-button'))
+  display: inline-block
+  position: relative
+  margin: 0
+  padding: 0 $space-1
+  transition: background $timer-fast ease-in, color $timer-fast ease-in, box-shadow $timer-fast ease-in
+  font-size: $font-size-6
+  font-weight: $font-weight-normal
+  line-height: 3rem
+  white-space: nowrap
+  cursor: pointer
+
+  &:hover,
+  &:focus
+    +theme((background: 'color-background-button-hover', color: 'color-text-button-hover'))
+    text-decoration: none
+
+  &:focus
+    +theme((box-shadow: 'shadow-button-focus'))
+    outline: none
+
+  &:active
+    +theme((background: 'color-background-button-active', color: 'color-text-button-active', box-shadow: 'shadow-button-active'))
+
+  &:disabled
+    +theme((background: 'color-background-button-disabled', color: 'color-text-button-disabled', border-color: 'color-border-button-disabled', box-shadow: 'shadow-button-disabled'))
+    cursor: default
+
+    &:hover,
+    &:focus
+      +theme((background: 'color-background-button-disabled', color: 'color-text-button-disabled', border-color: 'color-border-button-disabled', box-shadow: 'shadow-button-disabled'))
+
+  figure
+    display: inline-block
+    vertical-align: baseline
+
+    svg,
+    img
+      display: inline-block
+      width: 1.6rem
+      height: 1.6rem
+      vertical-align: middle
+      fill: $twitch-purple
+
+// Secondary button styles and button group button styles
+// ----------------------------------------------------------------------------
+.button--hollow,
+.button--radio,
+.button--checkbox
+  +theme
+    background: token('color-background-button-hollow')
+    color: token('color-text-button-hollow')
+    box-shadow: inset 0 0 0 1px token('color-border-button-hollow')
+
+  &:hover,
+  &:focus
+    +theme((background: 'color-background-button-hollow-hover', color: 'color-text-button-hollow-hover'))
+
+  &:focus
+    +theme
+      box-shadow: token('shadow-button-focus'), inset 0 0 0 1px token('color-border-button-hollow-focus')
+
+  &:active
+    +theme
+      background: token('color-background-button-hollow-active')
+      box-shadow: token('shadow-button-active'), inset 0 0 0 1px token('color-border-button-hollow-active')
+      color: token('color-text-button-hollow-active')
+
+  &.button--dropmenu
+    &::after
+      +theme
+        border: 5px solid token('color-text-button-hollow')
+        border-right-color: transparent
+        border-bottom-color: transparent
+        border-left-color: transparent
+
+    &:hover::after,
+    &:focus::after
+      +theme
+        border: 5px solid token('color-text-button-hollow-hover')
+        border-right-color: transparent
+        border-bottom-color: transparent
+        border-left-color: transparent
+
+// Segmented Button
+// ----------------------------------------------------------------------------
+.segmented-button
+  display: inline-flex
+
+.button--radio,
+.button--checkbox
+  +theme
+    background: token('color-background-button-hollow')
+    box-shadow: inset 0 0 0 1px token('color-border-button-hollow')
+    color: token('color-text-button-hollow')
+  display: flex
+  position: relative
+  padding: 0
+
+  &:nth-of-type(n+2)
+    +theme
+      box-shadow: inset -1px 0 0 token('color-border-button-hollow'), inset 0 1px 0 token('color-border-button-hollow'), inset 0 -1px 0 token('color-border-button-hollow')
+
+  [type='radio'],
+  [type='checkbox']
+    // Accessibly hide this input
+    +a11y-hide
+
+    &:focus + .button__label
+      +theme((background: 'color-background-button-hollow-focus', color: 'color-text-button-hollow-focus', box-shadow: 'shadow-button-focus'))
+
+    &:active + .button__label
+      +theme((background: 'color-background-button-hollow-active', color: 'color-text-button-hollow-active', box-shadow: 'shadow-button-active'))
+
+    &:checked + .button__label
+      +theme((background: 'color-background-button', color: 'color-text-button'))
+
+
+  [type='checkbox']
+    &:focus + .button__label
+      +theme((background: 'color-background-button-hollow-focus', color: 'color-text-button-hollow-focus', box-shadow: 'shadow-button-focus'))
+
+    &:active + .button__label
+      +theme((background: 'color-background-button-hollow-active', color: 'color-text-button-hollow-active', box-shadow: 'shadow-button-active'))
+
+    &:checked:focus + .button__label
+      +theme((background: 'color-background-button-focus', color: 'color-text-button-focus'))
+
+    &:checked:active + .button__label
+      +theme((background: 'color-background-button-active', color: 'color-text-button-active'))
+
+  .button__label
+    padding: 0 $space-1
+    transition: background-color $timer-fast ease-in
+
+
+// Tertiary buttons with only text
+// ----------------------------------------------------------------------------
+.button--text
+  +theme((background: 'color-background-button-hollow', color: 'color-text-button-hollow'))
+
+  &:hover,
+  &:focus
+    +theme((background: 'color-background-button-hollow-hover', color: 'color-text-button-hollow-hover'))
+
+  &:focus
+    +theme
+      box-shadow: token('shadow-button-focus'), inset 0 0 0 1px token('color-border-button-hollow-focus')
+
+  &:active
+    +theme
+      background: token('color-background-button-hollow-active')
+      box-shadow: token('shadow-button-active'), inset 0 0 0 1px token('color-border-button-hollow-active')
+      color: token('color-text-button-hollow-active')
+
+  &.button--dropmenu
+    &::after
+      border: 5px solid token('color-text-button-hollow')
+      border-right-color: transparent
+      border-bottom-color: transparent
+      border-left-color: transparent
+    &:hover::after
+      border: 5px solid token('color-text-button-hollow-hover')
+      border-right-color: transparent
+      border-bottom-color: transparent
+      border-left-color: transparent
+
+// Small font button
+.button--small
+  padding: 0 0.8rem
+  font-size: $font-size-7
+  line-height: 2.4rem
+
+// Large size button
+.button--large
+  padding: 0 1.2rem
+  font-size: $font-size-4
+  line-height: 3.6rem
+
+
+// Alert button
+// ----------------------------------------------------------------------------
+.button--alert
+  +theme((background: 'color-background-button-alert', color: 'color-text-button-alert', border-color: 'color-border-button-alert'))
+
+  &:hover,
+  &:focus
+    +theme((background: 'color-background-button-alert-hover', color: 'color-text-button-alert-hover', border-color: 'color-border-button-alert-hover'))
+
+  &:active
+    +theme((background: 'color-background-button-alert-active', color: 'color-text-button-alert-active', border-color: 'color-border-button-alert-active'))
+
+
+// Buttons with icons
+// ----------------------------------------------------------------------------
+.button--icon
+  padding: 0 0.8rem
+
+  figure
+    position: relative
+    top: -0.1rem
+    padding: 0 $space-05 0 0
+    line-height: 1rem
+    vertical-align: middle
+
+    svg
+      +theme((fill: 'color-text-button'))
+
+  &.button--hollow
+    figure
+      svg
+        +theme((fill: 'color-text-button-hollow'))
+
+  &.button--text
+    figure
+      svg
+        +theme((fill: 'color-text-button-hollow'))
+
+.button--icon-only
+  +theme((background: 'color-background-button-hollow'))
+  padding: 0
+  font-size: 0
+  vertical-align: top
+
+  figure
+    position: relative
+    top: 0
+    padding: 0 0.7rem
+
+    svg
+      +theme((fill: 'color-text-button-hollow'))
+
+  &:focus
+    +theme
+      box-shadow: token('shadow-button-focus'), inset 0 0 0 1px token('color-border-button-hollow-focus')
+
+  &:hover,
+  &:focus
+    +theme((background: 'color-background-button-hollow-hover'))
+
+    figure
+      svg
+        +theme((fill: 'color-text-button-hollow-hover'))
+
+  &:active
+    +theme((background: 'color-background-button-hollow-active'))
+
+    figure
+      svg
+        +theme((fill: 'color-text-button-hollow-active'))
+
+  &.button--secondary
+    figure
+      svg
+        +theme((fill: 'color-text-button-secondary'))
+
+    &:hover,
+    &:focus
+      figure
+        svg
+          +theme((fill: 'color-text-button-secondary-hover'))
+
+    &:active
+      figure
+        svg
+          +theme((fill: 'color-text-button-secondary-active'))
+
+  &.button--dropmenu
+    padding-right: $space-2
+
+    &::after
+      +theme
+        border: 5px solid token('color-text-button-hollow')
+        border-right-color: transparent
+        border-bottom-color: transparent
+        border-left-color: transparent
+
+    &:hover::after
+      +theme
+        border: 5px solid token('color-text-button-hollow-hover')
+        border-right-color: transparent
+        border-bottom-color: transparent
+        border-left-color: transparent
+
+
+// Commonly used dropmenu launcher button
+// ----------------------------------------------------------------------------
+.button--dropmenu
+  padding-right: $space-3
+
+  &::after
+    +theme
+      border: 5px solid token('color-text-button')
+      border-right-color: transparent
+      border-bottom-color: transparent
+      border-left-color: transparent
+    position: absolute
+    top: 50%
+    right: 1rem
+    width: 0
+    height: 0
+    content: ''
+    transition: border-color $timer-fast ease-in
+    margin-top: -0.2rem
+
+
+// Button with price inside.
+// For puchasing. Has numBlock child
+// ----------------------------------------------------------------------------
+.button--purchase
+  padding-right: 0
+  white-space: nowrap
+
+// Price inside button--purchase
+.button__num-block
+  +theme((background: 'color-background-button-purchase'))
+  display: inline-block
+  margin-left: $space-05
+  padding: 0 0.8rem
+
+
+// Green/Red status button
+// Friend/Unfriend etc.
+// theme rules are required for specificity
+// ----------------------------------------------------------------------------
+.button--status
+  +theme((background: 'color-background-button-status', color: 'color-text-button-status', border-color: 'color-border-button-status'))
+  display: inline-flex
+  flex-direction: column
+  text-align: center
+  overflow-x: hidden
+
+  &.button--icon
+    &.button--icon-only
+      text-align: left
+
+      figure
+        svg
+          +theme((fill: 'color-text-button-status'))
+
+  &:hover,
+  &:focus
+    +theme((background: 'color-background-button-status-hover', color: 'color-text-button-status-hover', border-color: 'color-border-button-status-hover'))
+
+    .button__status--hover
+      opacity: 1
+
+    .button__status--primary
+      opacity: 0
+
+  &:active
+    +theme((background: 'color-background-button-status-active', color: 'color-text-button-status-active', border-color: 'color-border-button-status-active'))
+
+.button--success
+  +theme((background: 'color-background-button-success', color: 'color-text-button-success', border-color: 'color-border-button-success'))
+
+  .button__status--primary
+    opacity: 0
+
+  .button__status--success
+    opacity: 1
+
+  &:hover,
+  &:focus
+    +theme((background: 'color-background-button-success-hover', color: 'color-text-button-success-hover', border-color: 'color-border-button-success-hover'))
+
+  &:active
+    +theme((background: 'color-background-button-success-active', color: 'color-text-button-success-active', border-color: 'color-border-button-success-active'))
+
+.button__status--success
+  opacity: 0
+
+// Label inside of button--status
+.button__status
+  display: block
+  justify-content: center
+  transition: background $timer-fast ease-in, color $timer-fast ease-in, border-color $timer-fast ease-in
+
+.button__status--primary
+  margin-top: -$space-3
+  opacity: 1
+
+.button__status--hover
+  opacity: 0
+
+// Hover label inside of button--status
+.button__status-hover
+  display: block
+  opacity: 0
+
+// File buttons
+// ----------------------------------------------------------------------------
+.button--file
+  overflow: hidden
+
+.button__input-file
+  +a11y-hide
+
+// ============================================================================
+// Deprecation
+
+// 06.02.2017
+// Deprecating `.button--disabled` modifier in favor of `disabled` attribute.
+.button--disabled
+  +theme((background: 'color-background-button-disabled', color: 'color-text-button-disabled', border-color: 'color-border-button-disabled'))
+
+  &:hover,
+  &:focus
+    +theme((background: 'color-background-button-disabled', color: 'color-text-button-disabled', border-color: 'color-border-button-disabled'))
+    cursor: default

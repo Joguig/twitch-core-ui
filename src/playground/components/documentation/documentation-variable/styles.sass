@@ -1,0 +1,15 @@
+@import core.variables
+
+.variable-table-row
+  display: table-row
+
+  &__cell
+    +theme
+      border-top: token('border-width') solid token('color-border')
+    display: table-cell
+    padding: $space-1 $space-2
+    font-size: $font-size-4
+    vertical-align: middle
+
+    &:not(:first-child)
+      width: 50%

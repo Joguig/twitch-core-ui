@@ -1,0 +1,72 @@
+@import core.variables
+
+@keyframes vod-animated-preview
+  to
+    transform: translateY(-100%)
+
+$card-img-border-width: 2px
+
+.tw-card-img
+  flex-shrink: 0
+
+.tw-card-img--preview
+  img
+    animation: vod-animated-preview 6s steps(10, end) infinite
+
+.tw-card-img--xs
+  &.tw-card-img
+     width: 6rem
+
+  &.tw-card-img--avatar
+    width: 3rem
+
+  &.tw-card-img--boxart
+    width: 3rem
+
+.tw-card-img--sm
+  &.tw-card-img
+    width: 8rem
+
+  &.tw-card-img--boxart
+    width: 4rem
+
+  &.tw-card-img--avatar
+    width: 4rem
+
+.tw-card-img--lg
+  &.tw-card-img
+    width: 24rem
+
+.tw-card-img--xl
+  .tw-card-img
+    width: 32rem
+
+.tw-card-img--pinned
+  +theme
+    border-width: $card-img-border-width
+    border-color: token(color-background)
+  position: absolute
+
+  &.tw-card-img--bottom-right
+    right: 0
+    bottom: 0
+    border-right: none
+    border-bottom: none
+
+  &.tw-card-img--bottom-left
+    bottom: 0
+    left: 0
+    border-bottom: none
+    border-left: none
+
+  &.tw-card-img--top-right
+    top: 0
+    right: 0
+    border-top: none
+    border-right: none
+
+  &.tw-card-img--top-left
+    top: 0
+    left: 0
+    border-top: none
+    border-left: none

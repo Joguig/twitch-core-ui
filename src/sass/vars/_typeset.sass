@@ -1,0 +1,40 @@
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+// Baseline variables
+// Do not use these as hard coded values anywhere.
+// They are specifically for the baseline and modular scale functions.
+$base-font-size               : 12
+$base-cap-height              : 0.66
+$base-line-height             : 10 // Half of desired lineheight
+$base-unit                    : 1rem
+
+// Font sizes.
+$font-size-1                  : ms-to-rem(40)
+$font-size-2                  : ms-to-rem(28)
+$font-size-3                  : ms-to-rem(24)
+$font-size-4                  : ms-to-rem(16)
+$font-size-5                  : ms-to-rem(14)
+$font-size-base               : ms-to-rem(12)
+$font-size-6                  : ms-to-rem(12)
+$font-size-7                  : ms-to-rem(11)
+$font-size-8                  : ms-to-rem(10)
+
+// Line-height
+$line-height: ms-to-rem($base-line-height * 2)
+
+// Map the font sizes.
+$font-sizes: $font-size-1, $font-size-2, $font-size-3, $font-size-4, $font-size-5, $font-size-6, $font-size-7, $font-size-8
+
+// Font weights.
+$font-weight-normal           : 400
+$font-weight-bold             : 600
+$font-weight-hdr              : $font-weight-normal
+
+// Font families.
+$font-base:     'Helvetica Neue', Helvetica, Arial, sans-serif
+$font-display:  'Korolev', 'Helvetica Neue', 'Helvetica', sans-serif
+$font-mono:     Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', Courier, monospace, sans-serif
+
+// Timer Variables
+$timer-fast                   : 0.12s

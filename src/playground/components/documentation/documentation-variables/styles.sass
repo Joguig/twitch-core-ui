@@ -1,0 +1,17 @@
+@import core.variables
+
+.variable-table
+  +theme
+    border-radius: token('border-radius')
+    border: token('border-width') solid token('color-border')
+  display: table
+  width: 100%
+
+  &__header
+    display: table-header-group
+
+  &__header-item
+    +theme
+      background: token('color-background-alt')
+    display: table-cell
+    padding: $space-1 $space-2

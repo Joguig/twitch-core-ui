@@ -1,0 +1,33 @@
+@import core.variables
+
+.lint-rule-table
+  +theme
+      border-radius: 2px
+      border: token-get('border-width') solid token-get('color-border')
+  display: table
+  width: 100%
+
+  &__header
+    display: table-header-group
+
+  &__header-item
+    +theme
+      background: token-get('color-background-alt')
+    display: table-cell
+    padding: $space-1 $space-2
+
+  &__row
+    display: table-row
+
+  &__cell
+    +theme
+      border-top: token-get('border-width') solid token-get('color-border')
+    display: table-cell
+    padding: $space-1 $space-2
+    font-size: $font-size-4
+
+    &:not(:first-child)
+      +theme
+        border-left: token-get('border-width') solid token-get('color-border')
+        background: token-get('color-background-alt-2')
+      width: 30%

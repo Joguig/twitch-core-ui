@@ -1,0 +1,27 @@
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+$icon-size-scale: 1.6rem 2rem !default
+
+// This fixes the positioning of icons when lined up against text and using
+// flex and align-items-center to handle the vertical alignment. Otherwise,
+// the larger line-height causes the svg to align to the top of its bounding box
+// and making it not align with text on the same line.
+.icon
+  line-height: 1rem
+
+
+// Icons will likely need a more in-depth look as they are moved into a
+// specific component.
+// ----------------------------------------------------------------------------
+.tw-icon
+  max-height: nth($icon-size-scale, 2)
+
+// Loops over the `$icon-size-scale` map to create modifier classes for icons.
+// Ignores the first size class, as it's applied by default with  `.tw-icon`.
+@each $size in $icon-size-scale
+  $i: index($icon-size-scale, $size)
+
+  @if $i > 1
+    .tw-icon--size-#{$i - 1}
+      max-height: $size

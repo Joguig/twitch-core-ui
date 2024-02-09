@@ -1,0 +1,65 @@
+@import core.variables
+
+// sass-lint:disable no-universal-selectors no-combinators
+// ----------------------------------------------------------------------------
+
+.tw-aspect
+  position: relative
+
+  &::before
+    display: block
+    padding-bottom: 100%
+    content: ''
+
+  // Child Element
+  & > *
+    position: absolute
+    left: 0
+    width: 100%
+    min-height: 100%
+
+  // Crop
+  &--crop
+    overflow: hidden
+
+  // Child Alignment.
+  &--align-top
+    & > *
+      top: 0
+
+  &--align-center
+    & > *
+      top: 50%
+      transform: translateY(-50%)
+
+  &--align-bottom
+    & > *
+      bottom: 0
+
+  // Ratios
+  &--1x1
+    &::before
+      padding-bottom: percentage(1/1)
+
+  &--3x4
+    &::before
+      padding-bottom: percentage(4/3)
+
+  &--16x9
+    &::before
+      padding-bottom: percentage(9/16)
+
+  &--4x3
+    &::before
+      padding-bottom: percentage(3/4)
+
+  &--21x9
+    &::before
+      padding-bottom: percentage(9/21)
+
+  &--boxart
+    &::before
+      padding-bottom: percentage(380/272)
+
+// ----------------------------------------------------------------------------
+// sass-lint:enable no-universal-selectors no-combinators

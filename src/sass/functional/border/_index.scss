@@ -1,0 +1,30 @@
+// Twitch Core-UI
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+$directions: (
+  '': '',
+  't': 'top',
+  'r': 'right',
+  'b': 'bottom',
+  'l': 'left'
+);
+
+@each $key, $direction in $directions {
+  $declaration: 'border';
+  $classname: $declaration;
+
+  @if $key != '' {
+    $classname: '#{$declaration}-#{$key}';
+  }
+
+  @if $direction != '' {
+    $declaration: '#{$declaration}-#{$direction}';
+  }
+
+  .#{$classname} {
+    @include theme {
+      #{$declaration}: token('border-width') solid token('color-border');
+    }
+  }
+}

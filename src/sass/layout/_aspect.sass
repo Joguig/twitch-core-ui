@@ -1,0 +1,81 @@
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+
+// Aspect Ratio
+// ----------------------------------------------------------------------------
+// Use the .aspect class to create a box which will scale with the viewport.
+// The default ratio is 16/9 but other sizes can be created by either changing
+// the default padding-bottom of percentage(9/16) or adding an extra
+// padding-top to the aspect to include a pixels sized addition such as with
+// `.aspect--player-chrome`
+//
+// ```
+// <ul class="tower tower--xs-1-4 show-grid show-grid--child">
+//  <li>
+//     <div class="aspect">
+//       <div class="aspect__fill">.aspect</div>
+//     </div>
+//  </li>
+//  <li>
+//     <div class="aspect aspect--player-chrome">
+//       <div class="aspect__fill">.aspect .aspect--player-chrome</div>
+//     </div>
+//  </li>
+//  <li>
+//     <div class="aspect aspect--square">
+//       <div class="aspect__fill">.aspect .aspect--square</div>
+//     </div>
+//  </li>
+// </ul>
+// ```
+
+.aspect
+  display: block
+  position: relative
+  padding-bottom: percentage(9/16)
+  height: 0
+  overflow: hidden
+
+.aspect--3x4
+  padding-bottom: percentage(380/272)
+
+.aspect--square
+  padding-bottom: 100%
+
+.aspect--4x3
+  padding-bottom: percentage(3/4)
+
+.aspect--16x9
+  padding-bottom: percentage(9/16)
+
+.aspect--21x9
+  padding-bottom: percentage(9/21)
+
+// Auto clip the 4x3 (or 16x12) vod images to use 16x9.
+// Math goes (12-9) / 2 / 16 * -100 = -9.375%.
+// Subtract the amount of height dead space left by artificial black bars
+// (12-9) and divide by 2. Divide this amount by the width (16).
+// Multiply by -100 to get negative percentage.
+.aspect--4x3-crop
+  .aspect__fill
+    height: auto
+    max-height: none
+    margin: -9.375% 0
+
+// @TODO: discuss if this should be more atomic using @shuster's new
+// postition utils.
+.aspect__fill
+  position: absolute
+  left: 0
+  top: 0
+  right: 0
+  bottom: 0
+  height: 100%
+  width: 100%
+  max-height: 100%
+  max-width: 100%
+  iframe
+    height: 100%
+    width: 100%
+    position: absolute

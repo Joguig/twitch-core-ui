@@ -1,0 +1,64 @@
+{
+  "name": "twitch-core-ui",
+  "version": "0.5.27",
+  "description": "Twitch Core UI",
+  "main": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git@git-aws.internal.justin.tv:web/core-ui.git"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --env.devserver",
+    "start:optimized": "webpack-dev-server --env.devserver --env.optimized",
+    "build": "webpack --env.build --env.optimized",
+    "test": "./node_modules/.bin/karma start --single-run --no-auto-watch",
+    "lint": "yarn lint:typescript -- --fix && yarn lint:sass",
+    "lint:ci": "yarn lint:typescript && yarn lint:sass",
+    "lint:typescript": "tslint \"src/**/*.ts?(x)\" -c tslint.json",
+    "lint:sass": "sh sass-lint.sh",
+    "preversion": "node bin/prepare-release",
+    "postversion": "git push origin master --follow-tags && npm publish"
+  },
+  "author": "Twitch",
+  "license": "UNLICENSED",
+  "precommit": {
+    "run": [
+      "lint:sass"
+    ]
+  },
+  "dependencies": {
+    "@types/classnames": "^0.0.32",
+    "@types/react": "^15.0.20",
+    "@types/react-dom": "^15.5.0",
+    "@types/react-router-dom": "^4.0.4",
+    "classnames": "^2.2.5",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-router-dom": "^4.1.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.5.3",
+    "awesome-typescript-loader": "^3.1.2",
+    "clean-webpack-plugin": "^0.1.16",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.1",
+    "css-mqpacker": "5.0.1",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "html-webpack-plugin": "^2.28.0",
+    "node-sass": "^4.5.2",
+    "postcss-input-range": "^3.0.1",
+    "postcss-loader": "^1.3.3",
+    "pre-commit": "^1.2.2",
+    "sass-lint": "^1.10.2",
+    "sass-loader": "^6.0.3",
+    "semver": "^5.3.0",
+    "style-loader": "^0.17.0",
+    "tslib": "^1.7.1",
+    "tslint": "^5.4.2",
+    "tslint-eslint-rules": "^4.1.1",
+    "tslint-react": "^3.0.0",
+    "typescript": "^2.3.4",
+    "webpack": "^2.3.2",
+    "webpack-dev-server": "^2.4.2"
+  }
+}

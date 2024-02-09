@@ -1,0 +1,415 @@
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+//-----------------------------------------------------------------------------
+// Balloon
+//
+// Pattern that appears on hover and contains menu options,
+// useful information, or hints. Sometimes known as popups,
+// tipsies, etc.*/
+//-----------------------------------------------------------------------------
+
+// Balloon size and misc
+$balloon-hotspot-size    : 12px
+$balloon-arrow-size      : 6px
+$balloon-arrow-offset    : 6px
+
+//-----------------------------------------------------------------------------
+// Balloon Wrapper
+//
+// Balloon is always anchored by its parent class, balloon-wrapper. It gives
+// relative positioning and controls hover states. If hover on ballow-wrapper is
+// not needed the states can be overwritten by using the show and hide helper
+// classes. These states can then be managed by ember or other js actions.
+//-----------------------------------------------------------------------------
+.balloon-wrapper
+  position: relative
+
+  &:hover
+    // Hovering over the balloon-wrapper will show balloon.
+    // For displaying on-click, we use Ember actions. They will
+    // automatically override these styles because they are
+    // placed inline.
+    .balloon
+      display: block
+
+    .balloon--cols
+      display: flex
+
+    // This will be deprecated. Please use .show and .hide to toggle something
+    // within an ember action. Toggles controlled by Styles may eventually
+    // exist, but not right now.
+    .balloon--toggle
+      display: none
+
+// For pointing out a place where there's a balloon using a "hotspot" indicator
+.balloon-wrapper--hotspot
+  width: $balloon-hotspot-size
+  height: $balloon-hotspot-size
+  z-index: 6
+
+  &::after
+    +theme((background: 'color-background-balloon-hotspot'))
+    display: block
+    width: $balloon-hotspot-size
+    height: $balloon-hotspot-size
+    border-radius: 100%
+    content: ''
+
+  &:hover::after
+    +theme((background: 'color-background-balloon-hotspot-hover'))
+
+.balloon
+  +theme
+    border-radius: token('border-radius')
+    background: token('color-background')
+    color: token('color-text')
+    box-shadow: 0 0 0 token('border-width') token('color-border'), token('shadow-balloon')
+  display: none
+  position: absolute
+  left: 0
+  min-width: 16rem
+  max-width: 90vw
+  padding: $space-1
+  font-size: $font-size-6
+  line-height: 1.5rem
+  text-align: left
+  z-index: 99999
+
+  &::before,
+  &::after
+    position: absolute
+    content: ''
+
+  // This serves as a buffer around the entire balloon to prevent it from being
+  // "closed" before mouse is fully hovered over it
+  &::before
+    top: -$balloon-arrow-size
+    left: -$balloon-arrow-size
+    width: calc(100% + #{$balloon-arrow-size * 2})
+    height: calc(100% + #{$balloon-arrow-size * 2})
+    z-index: -1
+
+  // This is the arrow of the balloon, which is repositioned according to its
+  // specified direction.
+  &::after
+    +theme((background: 'color-background'))
+    width: $balloon-arrow-size
+    height: $balloon-arrow-size
+    transform: rotate(45deg)
+    // This prevents weird overlaps when content is too close.
+    z-index: -1
+
+// For fancy display balloons
+.balloon--fancy
+  +theme((color: 'color-text-balloon-fancy'))
+  border: none
+  text-align: center
+  // Override text-wrapping of parent.
+  white-space: normal
+  box-shadow: 0 0 0 1px rgba($black, 0.1)
+  opacity: 0
+  animation: fade 0.6s ease forwards
+
+
+// Balloon DIRECTION Modifiers
+//-----------------------------------------------------------------------------
+
+// Appears to LEFT of anchor
+.balloon--left
+  top: 0
+  right: 100%
+  left: auto
+  margin-right: $balloon-arrow-size
+
+  &::after
+    +theme
+      border-radius: 0 token('border-radius') 0 0
+      box-shadow: token('border-width') -1*token('border-width') 0 token('color-border')
+    top: $balloon-arrow-offset
+    left: 100%
+    margin-left: -$balloon-arrow-size / 2
+
+// Appears to RIGHT of anchor
+.balloon--right
+  top: 0
+  left: 100%
+  margin-left: $balloon-arrow-size
+
+  &::after
+    +theme
+      border-radius: 0 0 0 token('border-radius')
+      box-shadow: -1*token('border-width') token('border-width') 0 token('color-border')
+    top: $balloon-arrow-offset
+    left: 0
+    margin-left: -$balloon-arrow-size / 2
+
+
+// If you want to ballloon up or down to pin from a different side you can use a
+//  combination of both classes.
+.balloon--left,
+.balloon--right
+
+  // Horizontally center a horizontal balloon.
+  &.balloon--center
+    top: 50%
+    transform: translateY(-50%)
+    &::after
+      // Horizontal balloon arrows already have a margin-left adjustment
+      top: 50%
+      margin-top: -$balloon-arrow-size / 2
+
+// Appears ABOVE anchor
+.balloon--up
+  top: auto
+  bottom: 100%
+  left: 0
+  margin-bottom: $balloon-arrow-size
+
+  &::after
+    +theme
+      border-radius: 0 0 token('border-radius')
+      box-shadow: token('border-width') token('border-width') 0 token('color-border')
+    top: 100%
+    left: $balloon-arrow-offset
+    margin-top: -$balloon-arrow-size / 2
+
+// Appears BELOW anchor
+.balloon--down
+  top: 100%
+  left: 0
+  margin-top: $balloon-arrow-size
+
+  &::after
+    +theme
+      border-radius: token('border-radius') 0 0
+      box-shadow: -1*token('border-width') -1*token('border-width') 0 token('color-border')
+    top: -$balloon-arrow-size / 2
+    left: $balloon-arrow-offset
+
+
+// If you want to ballloon up or down to pin from a different side you can use a
+//  combination of both classes.
+.balloon--up,
+.balloon--down
+
+  // Horizontally center a horizontal balloon.
+  &.balloon--center
+    left: 50%
+    transform: translateX(-50%)
+
+    &::after
+      // Horizontal balloon arrows already have a margin-left adjustment
+      left: 50%
+      margin-left: (-$balloon-arrow-size / 2)
+
+  &.balloon--right
+    top: auto
+    right: 0
+    left: auto
+
+    &::after
+      top: 100%
+      left: 100%
+      margin-left: -$balloon-arrow-offset - $balloon-arrow-size
+
+.balloon--down
+  &.balloon--right
+    top: 100%
+    &::after
+      top: -$balloon-arrow-size / 2
+      left: 100%
+      margin-left: -$balloon-arrow-offset - $balloon-arrow-size
+
+.balloon-wrapper--hotspot
+  .balloon--left,
+  .balloon--right
+    top: $balloon-hotspot-size / 2 - $balloon-arrow-size / 2 - $balloon-arrow-offset
+
+  .balloon--up,
+  .balloon--down
+    left: $balloon-hotspot-size / 2 - $balloon-arrow-size / 2 - $balloon-arrow-offset
+
+  .balloon--up
+    &.balloon--right
+      top: auto
+      right: $balloon-hotspot-size - ($balloon-arrow-size * 1.5) - $balloon-arrow-offset
+      left: auto
+
+  .balloon--down
+    &.balloon--right
+      top: $balloon-hotspot-size
+      right: $balloon-hotspot-size - ($balloon-arrow-size * 1.5) - $balloon-arrow-offset
+      left: auto
+
+  .balloon--center
+    left: 50%
+
+
+// Balloon STYLE modifiers
+//-----------------------------------------------------------------------------
+
+// Appears with no tail (arrow)
+.balloon--no-tail
+  margin-top: 0
+  margin-bottom: 0
+
+  &::after
+    display: none
+
+// Balloon with no padding
+.balloon--no-padding
+  padding: 0
+
+// Tooltip Balloon! Dark, small text, for 1 - 8 words
+.balloon--tooltip
+  +theme
+    background: token('color-background-balloon-tooltip')
+    color: token('color-text-balloon-tooltip')
+    box-shadow: none
+  min-width: 0
+  padding: ($balloon-arrow-size / 2) $balloon-arrow-size
+  white-space: nowrap
+
+  &::after
+    +theme
+      background: token('color-background-balloon-tooltip')
+      box-shadow: none
+
+// Dropmenu Balloon. Has 0 padding on sides.
+// We should merge this with some sort of modifier for padding options
+.balloon--dropmenu
+  padding: $space-1 0
+
+// List within a balloon. Should be used on a <ul>, <ol>, or <dl>
+.balloon__list
+  .balloon--cols &
+    width: 50%
+
+    ~ .balloon__list
+      +theme
+        box-shadow: -1*token('border-width') 0 0 token('color-border')
+
+// Balloon link!
+.balloon__link
+  cursor: pointer
+
+  .balloon &
+    +theme
+      color: token('color-text-balloon-link') !important
+    display: block
+    margin: 0 !important
+    padding: $space-05 $space-1 !important
+    // Fix for #header_loggedin a, :'(
+    float: none !important
+
+    &.balloon__link--selected
+      +theme
+        background: token('color-background-balloon-link-selected') !important
+
+    &:hover,
+    &.balloon__link--active
+      +theme
+        background: token('color-background-balloon-link-hover') !important
+        color: token('color-text-balloon-link-hover') !important
+      text-decoration: none
+      cursor: pointer
+
+  &.balloon__link--alert
+    +theme
+      color: token('color-text-balloon-link-alert') !important
+
+  // Disabled item
+  &.balloon__link--disabled
+    +theme
+      color: token('color-text-balloon-link-disabled') !important
+    pointer-events: none
+    cursor: default
+
+// Balloon title!
+.balloon__title
+  +theme((color: 'color-text-balloon-title'))
+  padding: $space-05 $space-1
+
+// Balloon stroke!
+.balloon__stroke
+  +theme
+    border-bottom: token('border-width') solid token('color-border')
+  width: calc(100% - #{$space-2})
+  margin: $space-05 $space-1
+
+// Columned balloon
+// Children element inside --cols will align themselves with flex-direction into
+// columns.  Actual display is handled by hover of .balloon or forces with the
+// balloon--static below
+.balloon--cols
+  min-width: 20rem
+  padding: $space-1 0
+  flex-direction: row
+  flex-wrap: wrap
+
+  &.show
+    display: flex !important
+
+
+// For balloons not anchored by a balloon wrapper that we want to force
+// Display and reset their position. Proceed with caution
+.balloon--static
+  display: block
+  position: relative
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+
+  &.balloon--cols
+    display: flex
+
+// Balloon Size modifiers
+.balloon--xs
+  min-width: 10rem
+  width: 10rem
+
+.balloon--sm
+  width: 20rem
+
+.balloon--md
+  width: 30rem
+
+.balloon--lg
+  width: 40rem
+
+.balloon--xl
+  width: 50rem
+
+.balloon--full
+  width: 100%
+
+
+// Stylistic balloon modifiers
+// ----------------------------------------------------------------------------
+
+// Purple balloons
+.balloon--purple
+  +theme
+    background: token('color-background-balloon-purple')
+    color: token('color-text-balloon-purple')
+    box-shadow: none
+
+  &::after
+    +theme
+      background: token('color-background-balloon-purple')
+      box-shadow: none
+
+// Alert balloons
+.balloon--alert
+  +theme
+    background: token('color-background-balloon-alert')
+    color: token('color-text-balloon-alert')
+    box-shadow: none
+
+  &::after
+    +theme
+      background: token('color-background-balloon-alert')
+      color: token('color-text-balloon-alert')
+      box-shadow: none

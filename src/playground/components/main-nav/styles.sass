@@ -1,0 +1,69 @@
+@import core.variables
+
+.main-nav-wrapper
+  width: 30rem
+  overflow: auto
+
+  // Reset
+  a
+    text-decoration: none
+    outline: none
+
+.main-nav
+  &__logo
+    color: $twitch-purple-6
+
+  &__link
+    +theme
+      border-bottom: 1px solid token('color-border')
+      color: token('color-text')
+    display: flex
+    padding: $space-2 $space-3
+    font-size: $font-size-4
+    font-weight: 400
+
+  &__sub-link
+    +theme((color: 'color-text-alt-2'))
+    display: flex
+    padding: $space-1 $space-2
+    margin: 0.2rem 0
+    font-size: $font-size-5
+
+    &:hover,
+    &:focus
+      +theme
+        background: token('color-background-alt-2')
+        color: token('color-text')
+
+    &--active
+      background: $twitch-purple-6
+      color: $white
+
+      &:hover,
+      &:focus
+        background: $twitch-purple-6
+        color: $white
+
+.nav-wrapper
+  padding: $space-05
+
+  h2
+    margin: $space-3
+
+  a
+    +theme((color: 'color-text-link'))
+    display: flex
+    padding: $space-05 $space-3
+    font-size: $font-size-4
+
+    &:hover
+      +theme((color: color-text-interactable-hover, background: color-background-interactable-hover))
+      text-decoration: none
+    &:focus
+      +theme
+        box-shadow: token(shadow-button-focus), inset 0 0 0 1px token('color-border-button-hollow-active')
+      outline: 0
+    &.active
+      +theme((color: color-text-interactable-selected, background: color-background-interactable-selected))
+      &:hover
+        +theme((color: color-text-interactable-hover, background: color-background-interactable-hover))

@@ -1,0 +1,17 @@
+@import core.variables
+
+.tw-thumbnail-card
+  a:hover
+    text-decoration: none
+    .tw-thumbnail-card__title
+      +theme((color: color-text-link))
+
+
+  &__title
+    +theme((color: color-text))
+    margin-top: $space-05
+    font-size: $font-size-5
+    line-height: $line-height
+
+  &__meta
+    +theme((color: color-text-alt-2))

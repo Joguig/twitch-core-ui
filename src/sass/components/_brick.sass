@@ -1,0 +1,193 @@
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+// Twitch-Styles Settings
+// ----------------------------------------------------------------------------
+
+// BRICK COLORS
+$brick-bg                   : $hinted-grey-14
+$brick-stroke-color         : $hinted-grey-13
+$brick-stroke-color-active  : $twitch-purple
+
+
+// BRICK
+// -----
+// Bricks are styled blocks that can contain text,
+// images, headers, etc. They are used in grids,
+// alone, as callouts, as form elements, etc. Use
+// them to separate out portions of content from others.
+
+// @TODO: When going over and documenting brick I've come to the thought that
+//        maybe we need to remove all brick child elements, and consider brick
+//        simply a Wrapper box and anything inside it is atomic and/or other
+//        components.
+
+// Basic brick
+.brick
+  +theme
+    background: token('color-background-alt')
+    border: token('border-width') solid token('color-border')
+  padding: $space-1
+  width: 100%
+
+// Brick stacked below another brick
+// Fixes the overlap of the borders
+.brick + .brick
+  margin-top: -0.1rem
+
+// Figure within a brick.
+// Contains a brick__img.
+.brick__img-container
+  position: relative
+  background-color: $twitch-purple-7
+  overflow: hidden
+  // TODO: Use ct-shadow-grey-sm when those shadows are vetted and moved into
+  // the pattern library.
+  box-shadow: 0 2px 4px -1px rgba($black, $opac-1)
+  line-height: 0
+  // Align overlaying stroke with border of rest of brick.
+  // This lets us free up "box-shadow" for actual shadows.
+  margin: (-1px)
+
+  &::after
+    +content-block
+    border: 1px solid rgba($black, $opac-2)
+
+// When a brick acts as a link
+.brick--hover
+  transition: opacity 0.3s ease
+  &:hover
+    opacity: $opac-12
+
+// Brick caption. By default, Brick has padding, so
+// "figcaption" only needs to be spaced on the top.
+.brick__caption
+  padding-top: $space-1
+
+// Brick Themes
+// ------------
+// "Grey" is the default Brick theme, meaning, content placed
+// on a white background color. These modifiers handle brick themes
+// other than "Grey": "White", "Purple" and "Dark".
+
+// Purple brick
+.brick--theme-purple
+  background-color: $twitch-purple-7
+  border-color: $twitch-purple-8
+  color: $twitch-purple-15
+
+  .brick__img-container
+    background-color: $twitch-purple-5
+
+    &::after
+      border-color: rgba($white, $opac-2)
+
+// Dark brick
+.brick--theme-dark
+  background-color: $twitch-purple-4
+  border-color: $twitch-purple-6
+  color: $twitch-purple-15
+
+  .brick__img-container
+    background-color: $twitch-purple-2
+
+    &::after
+      border-color: rgba($white, $opac-2)
+
+// White brick
+// TODO: Change haml files for Dashboard/Revenue on web/web to switch these
+// classes to brick--theme-white.
+.brick--theme-white,
+.brick--block,
+.brick--faint
+  background-color: $white
+  border-color: $hinted-grey-13
+  // White-themed brick has a more pastel tonality for its internal elements.
+  .brick__img-container
+    background-color: $twitch-purple-8
+
+// Grey brick
+// TODO: Change haml files for Dashboard/Revenue on web/web to switch these
+// classes to brick--theme-grey.
+.brick--theme-grey,
+.brick--block
+  background-color: $hinted-grey-15
+  border-color: $hinted-grey-13
+
+  .brick__img-container
+    background-color: $hinted-grey-10
+
+    &::after
+      border-color: rgba($black, $opac-2)
+
+// Brick Utilities
+// ---------------
+// Structural customization of Brick. This includes padding, margin,
+// column vs row, stroke location, responive behavior, etc.
+
+// Marked brick. Should appear alone and not in a list of bricks.
+.brick--marked
+  border-left-width: 0.3rem
+  border-left-color: $brick-stroke-color-active
+
+  &.brick--theme-white,
+  &.brick--theme-grey
+    border-left-color: $twitch-purple-9
+
+  &.brick--theme-purple
+    border-left-color: $twitch-purple-10
+
+  &.brick--theme-dark
+    border-left-color: $twitch-purple-10
+
+  &.brick--theme-red
+    border-left-color: $red
+
+
+// Brick with extra padding.
+.brick--pd-lg
+  padding: $space-2
+  // When brick has added padding, figcaption needs to be adjusted
+  // to maintain its internal padding.
+  .brick__caption
+    padding-top: $space-2
+
+// Brick with no padding
+.brick--pd-none
+  padding: 0
+  // When brick has no padding, figcaption needs to be adjusted
+  // to maintain its internal padding.
+  .brick__caption
+    padding: $space-1
+
+
+// For overlapping brick from below.
+// Compromising on what was here - this has a minor use
+// case but does come up occasionally. Keeping this margin modifier
+// attached to brick and eliminating variety options to what
+// actually gets used.
+// TODO: Look at this later and decide if it should be made even more local to
+// the Creative landing page.
+.brick--push-up
+  margin-top: -$space-6
+
+// Used to display content on click or on hover.
+// NOTE: If a hover event is used to display this,
+// The overlay content should be a LINK and the Brick
+// Should handle the route, NOT the overlay. This lets
+// the overlay serve as DECORATION ONLY and does not
+// prevent a user from having access to the utility.
+.brick__overlay
+  +absolute-full
+  opacity: 0
+  transition: 0.3s ease
+  display: flex
+  align-items: center
+  justify-content: center
+  background-color: rgba($twitch-purple-3, 0.9)
+  z-index: 2
+  margin: (-1px)
+  margin-bottom: (-1px * 2)
+  // A brick that contains an overlay
+  .brick--overlay:hover &
+    opacity: 1

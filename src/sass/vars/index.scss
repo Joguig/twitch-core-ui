@@ -1,0 +1,15 @@
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+// Static variable for images and fonts.
+$static-img                   : '/images' !default;
+$static-font                  : '/webfonts' !default;
+
+// Global Variables
+@import 'vars/colors';
+@import 'vars/opacs';
+@import 'vars/typeset';
+@import 'vars/sizes';
+@import 'vars/spacing';
+
+@import 'themes/index';

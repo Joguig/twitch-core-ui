@@ -1,0 +1,16 @@
+var execSync = require('child_process').execSync;
+
+function tryCommand(command, failureMessage) {
+  try {
+    console.log('Running: ' + command);
+    execSync(command, { stdio: 'inherit' });
+  } catch(e) {
+    console.log(failureMessage);
+    process.exit(1);
+  }
+}
+
+tryCommand('[[ -z $(git status --porcelain) ]]', 'The current work directory is "dirty" please commit or discard your changes, exiting...');
+tryCommand('git checkout master', 'Error checking out master, exiting...');
+tryCommand('git pull origin master', 'Error pulling current master, exiting...');
+tryCommand('npm install', 'Error running `npm install`, exiting...');

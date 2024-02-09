@@ -1,0 +1,252 @@
+@import core.variables
+
+// Button Settings
+$button-padding-x: 0.8rem
+$button-padding-y: 0
+$button-padding: $button-padding-y $button-padding-x
+
+$button-icon-padding-x: 0.6rem
+$button-icon-padding-y: 0
+$button-icon-padding: $button-icon-padding-y $button-icon-padding-x
+
+$button-line-height: 2.8rem
+$button-line-height-sm: 2.2rem
+$button-line-height-lg: 3.4rem
+
+.tw-button
+  +theme
+    border: token-get('border-width') solid transparent
+    background: token-get('color-background-button')
+    color: token-get('color-text-button')
+  display: inline-flex
+  position: relative
+  align-items: center
+  justify-content: center
+  padding: $button-padding
+  outline: none
+  font-size: $font-size-6
+  line-height: $button-line-height
+  white-space: nowrap
+  cursor: pointer
+  vertical-align: middle
+
+  // States
+  &:hover
+    +theme
+      border-color: token-get('color-border-button-hover')
+      background: token-get('color-background-button-hover')
+      color: token-get('color-text-button-hover')
+
+  &:focus
+    +theme
+      border-color: token-get('color-border-button-focus')
+      background: token-get('color-background-button-focus')
+      color: token-get('color-text-button-focus')
+      box-shadow: token-get('shadow-button-focus')
+
+  &:active
+    +theme
+      border-color: token-get('color-border-button-active')
+      background: token-get('color-background-button-active')
+      color: token-get('color-text-button-active')
+      box-shadow: token-get('shadow-button-active')
+
+  &:disabled
+    +theme
+      border-color: token-get('color-border-button-disabled')
+      background: token-get('color-background-button-disabled')
+      color: token-get('color-text-button-disabled')
+
+    // Keeps state styles from being applied on other types of buttons.
+    &:hover,
+    &:focus
+      +theme
+        border-color: token-get('color-border-button-disabled')
+        background: token-get('color-background-button-disabled')
+        color: token-get('color-text-button-disabled')
+        box-shadow: token-get('shadow-button-disabled')
+
+  // Hollow
+  // --------------------------------------------------------------------------
+  // Sometimes "Icon Only" buttons can be displayed as hollow buttons, so that
+  // selector is included in this modifier.
+  &--hollow
+
+    &,
+    &.tw-button--icon-only
+      +theme
+        border: token-get('border-width') solid token-get('color-border-button-hollow')
+        background: token-get('color-background-button-hollow')
+        color: token-get('color-text-button-hollow')
+
+      &:hover
+        +theme
+          border-color: token-get('color-border-button-hollow-hover')
+          background: token-get('color-background-button-hollow-hover')
+          color: token-get('color-text-button-hollow-hover')
+
+      &:focus
+        +theme
+          border-color: token-get('color-border-button-hollow-focus')
+          background: token-get('color-background-button-hollow-focus')
+          color: token-get('color-text-button-hollow-focus')
+          box-shadow: token-get('shadow-button-focus')
+
+      &:active
+        +theme
+          border-color: token-get('color-border-button-hollow-active')
+          background: token-get('color-background-button-hollow-active')
+          color: token-get('color-text-button-hollow-active')
+          box-shadow: token-get('shadow-button-active')
+
+
+  // Alert
+  // --------------------------------------------------------------------------
+  &--alert
+    +theme
+      border-color: token-get('color-border-button-alert')
+      background: token-get('color-background-button-alert')
+      color: token-get('color-text-button-alert')
+
+    &:hover,
+    &:focus
+      +theme
+        border-color: token-get('color-border-button-alert-hover')
+        background: token-get('color-background-button-alert-hover')
+        color: token-get('color-text-button-alert-hover')
+
+    &:active
+      +theme
+        border-color: token-get('color-border-button-alert-active')
+        background: token-get('color-background-button-alert-active')
+        color: token-get('color-text-button-alert-active')
+
+
+  // Success
+  // --------------------------------------------------------------------------
+  &--success
+    +theme
+      border-color: token-get('color-border-button-success')
+      background: token-get('color-background-button-success')
+      color: token-get('color-text-button-success')
+
+    &:hover,
+    &:focus
+      +theme
+        border-color: token-get('color-border-button-success-hover')
+        background: token-get('color-background-button-success-hover')
+        color: token-get('color-text-button-success-hover')
+
+    &:active
+      +theme
+        border-color: token-get('color-border-button-success-active')
+        background: token-get('color-background-button-success-active')
+        color: token-get('color-text-button-success-active')
+
+
+  // Text
+  // --------------------------------------------------------------------------
+  &--text
+    +theme
+      background: token-get('color-background-button-hollow')
+      color: token-get('color-text-button-hollow')
+
+    &:hover,
+    &:focus
+      +theme
+        background: token-get('color-background-button-hollow-hover')
+        color: token-get('color-text-button-hollow-hover')
+
+    &:focus
+      +theme
+        border: token-get('border-width') solid token-get('color-border-button-hollow-focus')
+        box-shadow: token-get('shadow-button-focus')
+
+    &:active
+      +theme
+        border: token-get('border-width') solid token-get('color-border-button-hollow-active')
+        background: token-get('color-background-button-hollow-active')
+        color: token-get('color-text-button-hollow-active')
+        box-shadow: token-get('shadow-button-active')
+
+
+  // Icons
+  // --------------------------------------------------------------------------
+  &__icon
+    display: inline-flex
+
+    &--left
+      padding-right: $button-padding-x
+
+    &--right
+      padding-left: $button-padding-x
+
+  &--icon-only
+    +theme
+      border-color: transparent
+      background: token-get('color-background-button-hollow')
+      color: token-get('color-text-button-hollow')
+    padding: $button-icon-padding
+
+    &::before
+      content: '\200B'
+
+    &:hover
+      +theme
+        border-color: transparent
+        background: token-get('color-background-button-hollow-hover')
+        color: token-get('color-text-button-hollow-hover')
+
+    &:focus
+      +theme
+        border-color: token-get('color-border-button-hollow-focus')
+        background: token-get('color-background-button-hollow-focus')
+        color: token-get('color-text-button-hollow-focus')
+
+    &:active
+      +theme
+        border-color: token-get('color-border-button-hollow-active')
+        background: token('color-background-button-hollow-active')
+        color: token-get('color-text-button-hollow-active')
+
+
+  // Secondary
+  // --------------------------------------------------------------------------
+  &--secondary
+    +theme
+      color: token-get('color-text-button-secondary')
+
+    &:hover
+      +theme
+        color: token-get('color-text-button-secondary-hover')
+
+    &:focus
+      +theme
+        color: token-get('color-text-button-secondary-focus')
+
+    &:active
+      +theme
+        color: token-get('color-text-button-secondary-active')
+
+
+  // Size Modifiers
+  // --------------------------------------------------------------------------
+  &--small
+    font-size: $font-size-7
+    line-height: $button-line-height-sm
+
+  &--large
+    font-size: $font-size-4
+    line-height: $button-line-height-lg
+
+
+  // Meta/Purchase Button
+  // --------------------------------------------------------------------------
+  &--purchase
+    padding-right: $space-0
+
+  &__num-block
+    +theme
+      background: token-get('color-background-button-purchase')
+    margin-left: $space-1
+    padding: $button-padding

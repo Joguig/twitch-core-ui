@@ -1,0 +1,70 @@
+// Twitch Core-UI
+// Copyright (c) 2017, Twitch Interactive, Inc. All rights reserved.
+// ============================================================================
+
+// Font Sizes
+// ----------------------------------------------------------------------------
+$font-size-1:     4rem !default;
+$font-size-2:     2.8rem !default;
+$font-size-3:     2.4rem !default;
+$font-size-4:     1.6rem !default;
+$font-size-5:     1.4rem !default;
+$font-size-base:  1.2rem !default;
+$font-size-6:     1.2rem !default;
+$font-size-7:     1.1rem !default;
+$font-size-8:     1rem !default;
+
+// Map the font sizes with their line heights.
+$font-sizes-classes: (
+  '1': ($font-size-1, 4rem),
+  '2': ($font-size-2, 3rem),
+  '3': ($font-size-3, 3rem),
+  '4': ($font-size-4, 2rem),
+  '5': ($font-size-5, 2rem),
+  '6': ($font-size-6, 2rem),
+  '7': ($font-size-7, 2rem),
+  '8': ($font-size-8, 2rem),
+  'base': ($font-size-base, 2rem)
+) !default;
+
+// Font Weights
+// ----------------------------------------------------------------------------
+$font-weight-bold: 600 !default;
+$font-weight-regular: 400 !default;
+
+// Alignments
+// ----------------------------------------------------------------------------
+$text-alignment-classes: (
+  'center': center,
+  'left':   left,
+  'right':  right
+);
+
+// ----------------------------------------------------------------------------
+// Classes
+// ----------------------------------------------------------------------------
+$type-classes: (
+  'font-size': (('font-size', 'line-height'), $font-sizes-classes, true),
+  'align':     ('text-align', $text-alignment-classes, true),
+  'regular':   ('font-weight', $font-weight-regular),
+  'strong':    ('font-weight', $font-weight-bold),
+  'italic':    ('font-style', italic),
+  'nowrap':    ('white-space', nowrap),
+  'underline': ('text-decoration', underline),
+  'upcase':    ('text-transform', uppercase),
+  'capcase':   ('text-transform', capitalize)
+);
+
+// Build the classes.
+@include build-classes($type-classes);
+
+// Legacy Support
+// ----------------------------------------------------------------------------
+// Ellipsis is widely used.
+// It should be refactored to only declare `text-overfow` and elements that need
+// white-space and overflow should use helpers to explicitly define those.
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

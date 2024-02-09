@@ -1,0 +1,36 @@
+@import core.variables
+
+.tw-live-channel-card
+  a:hover
+    text-decoration: none
+    .tw-live-channel-card__title
+      +theme((color: color-text-link))
+
+
+  &__title
+    +theme((color: color-text))
+    margin-top: $space-05
+    font-size: $font-size-5
+    line-height: $line-height
+
+    a
+      +theme((color: color-text))
+
+  &__meta
+    +theme((color: color-text-alt-2))
+      a
+        +theme((color: color-text-alt-2))
+
+  &__boxart
+    +theme
+      border: 2px solid token-get(color-background)
+    position: absolute
+    bottom: 0
+    right: 0
+    border-bottom: none
+    border-right: none
+    box-sizing: content-box
+    width: 4rem
+
+    img
+      height: calc(4/3 * 4rem)
